@@ -24,7 +24,7 @@ let gameStart = () => {
     rod3 = []
     // Add this text to 'message'
     document.querySelector("#message").innerHTML = "Ready to play? Click on the top disk!"
-    enableDiskClick()
+    diskSm1.addEventListener('click', diskClick)
 }
 
 gameStart()
@@ -39,24 +39,25 @@ resetButton.addEventListener("click", gameStart)
 
 // add listen to clicks to the disks, execute 1st click fx
 function enableDiskClick() {
-    diskSm1.addEventListener('click', firstClick)
-    diskMd2.addEventListener('click', firstClick)
-    diskLg3.addEventListener('click', firstClick)
+    diskSm1.addEventListener('click', diskClick)
+    diskMd2.addEventListener('click', diskClick)
+    diskLg3.addEventListener('click', diskClick)
 }
 
+// declare fx to disable the disk clicks
 function removeDiskClick() {
-    diskSm1.removeEventListener("click", firstClick)
-    diskMd2.removeEventListener("click", firstClick)
-    diskLg3.removeEventListener("click", firstClick)
+    diskSm1.removeEventListener("click", diskClick)
+    diskMd2.removeEventListener("click", diskClick)
+    diskLg3.removeEventListener("click", diskClick)
 }
 
-// add listen to click to the rods, execute 2nd click fx
-rodObj1.addEventListener('click', secondClick)
-rodObj2.addEventListener('click', secondClick)
-rodObj3.addEventListener('click', secondClick)
+// add listen for click to the rods, execute 2nd click fx
+rodObj1.addEventListener('click', rodClick)
+rodObj2.addEventListener('click', rodClick)
+rodObj3.addEventListener('click', rodClick)
 
-// declare fx for when a disk is clicked -hoisted
-function firstClick() {
+// declare fx for when a disk is clicked
+function diskClick() {
     // store the current disk's data-id in 'diskId'
 	let diskId = event.target.getAttribute("data-id")
     // // create copy of the clicked disk
@@ -71,7 +72,7 @@ function firstClick() {
 }
 
 // create event listener for the click on the rod, that would execute the following
-function secondClick() {
+function rodClick() {
     // store the current rod's id in 'rodId'
     let rodId = event.target.getAttribute("id")
     let currentRodArray
@@ -99,7 +100,11 @@ function secondClick() {
         // push first item of disksInPlay to the selected rod array
         currentRodArray.push(disksInPlay[0])
         // console.log(disksInPlay)
-        console.log(currentRodArray)
+        // console.log(currentRodArray)
+        // add text to message
+        document.querySelector("#message").innerHTML = "Click on the next disk to move!"
+        // clear disksinPlay
+        disksInPlay = []
     // otherwise, 
     } else {
          // make a copy of the last number of the selected rod array, then
@@ -129,9 +134,6 @@ function secondClick() {
         
     }
 }
-
-
-
 // create logic to check for win
 let checkForWin = () => {
     if (rod3 === [3,2,1]) {
