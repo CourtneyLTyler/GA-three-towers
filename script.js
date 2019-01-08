@@ -88,29 +88,42 @@ function rodClick() {
     // if (rodId == 'rod-1') // use rod1 array below
     // if (rodId == 'rod-2') // use rod2
     // if (rodId == 'rod-3') // use rod3
-    // console.log(rodId)
+    // // console.log(rodId)
 
     
+    if(rodId == 'rod-1') {
+        // rod1.push(disksInPlay)
+        check(rod1)
+    } else if (rodId == 'rod-2') {
+        // rod2.push(disksInPlay)
+        check(rod2)
+    } else if (rodId == 'rod-3') {
+        // rod3.push(disksInPlay)
+        check(rod3)
+    }
+   
+
+    // // switch statements?
+    // switch(rodId) {
+    //     case 'rod-1':
+    //     let currentRodArray = rod1;
+    //     break;
+    //     case 'rod-2':
+    //     let currentRodArray = rod2;
+    //     break;
+    //     case 'rod-3':
+    //     let currentRodArray = rod3;
+    //     break;
+    // }
+
     
     // if the current rod array is empty, 
-    function connectRodArray(currentRodArray) {
-        // switch statements?
+    function check(rodx) {
         
-    switch(rodId) {
-        case 'rod-1':
-        currentRodArray = rod1;
-        break;
-        case 'rod-2':
-        currentRodArray = rod2;
-        break;
-        case 'rod-3':
-        currentRodArray = rod3;
-        break;
-    }
-    console.log(currentRodArray)
-        if (currentRodArray = []) {
+    // console.log(currentRodArray)
+        if (rodx = []) {
             // push first item of disksInPlay to the selected rod array
-            currentRodArray.push(disksInPlay[0])
+            rodx.push(disksInPlay[0])
             // console.log(disksInPlay)
             // console.log(currentRodArray)
             // add text to message
@@ -123,7 +136,7 @@ function rodClick() {
         // otherwise, 
         } else {
             // make a copy of the last number of the selected rod array, then
-            let copyOfLast = currentRodArray[(currentRodArray.length)-1]
+            let copyOfLast = rodx[(rodx.length)-1]
             // push that copy to disksInPlay, then
             disksInPlay.push(copyOfLast)
             // console.log(disksInPlay)
@@ -131,7 +144,7 @@ function rodClick() {
             if (disksInPlay[0] < disksInPlay[1]) {
                 // push the disk from firstClick to the rod array selected in secondClick, then
                 // how to refer to diskID when it was created locally
-                currentRodArray.push(disksInPlay[0])
+                rodx.push(disksInPlay[0])
                 // clear disksInPlay
                 disksInPlay = []
                 // put eventlistener for firstclick back
