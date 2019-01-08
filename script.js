@@ -22,7 +22,8 @@ let gameStart = () => {
     disksInPlay = []
     rod2 = []
     rod3 = []
-    alert("Ready to play?  Click on the top disk!")
+    // Add this text to 'whoseTurn'
+    document.querySelector("#ready").innerHTML = "Ready to play? Click on the top disk!"
 }
 
 // test gameStart
