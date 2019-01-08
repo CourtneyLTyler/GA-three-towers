@@ -84,13 +84,18 @@ function diskClick() {
 function rodClick() {
     // store the current rod's id in 'rodId'
     let rodId = event.target.getAttribute("id")
-    let currentRodArray
+    
     // if (rodId == 'rod-1') // use rod1 array below
     // if (rodId == 'rod-2') // use rod2
     // if (rodId == 'rod-3') // use rod3
     // console.log(rodId)
 
-    // switch statements?
+    
+    
+    // if the current rod array is empty, 
+    function connectRodArray(currentRodArray) {
+        // switch statements?
+        
     switch(rodId) {
         case 'rod-1':
         currentRodArray = rod1;
@@ -103,48 +108,47 @@ function rodClick() {
         break;
     }
     console.log(currentRodArray)
-    
-    // if the current rod array is empty, 
-    if (currentRodArray = []) {
-        // push first item of disksInPlay to the selected rod array
-        currentRodArray.push(disksInPlay[0])
-        // console.log(disksInPlay)
-        // console.log(currentRodArray)
-        // add text to message
-        document.querySelector("#message").innerHTML = "Click on the next disk to move!"
-        // clear disksinPlay
-        disksInPlay = []
-        // enable diskclick
-        enableDiskClick()
-        disableRodClick()
-    // otherwise, 
-    } else {
-         // make a copy of the last number of the selected rod array, then
-        let copyOfLast = currentRodArray[(currentRodArray.length)-1]
-        // push that copy to disksInPlay, then
-        disksInPlay.push(copyOfLast)
-        // console.log(disksInPlay)
-        // compare values
-        if (disksInPlay[0] < disksInPlay[1]) {
-            // push the disk from firstClick to the rod array selected in secondClick, then
-            // how to refer to diskID when it was created locally
+        if (currentRodArray = []) {
+            // push first item of disksInPlay to the selected rod array
             currentRodArray.push(disksInPlay[0])
-            // clear disksInPlay
+            // console.log(disksInPlay)
+            // console.log(currentRodArray)
+            // add text to message
+            document.querySelector("#message").innerHTML = "Click on the next disk to move!"
+            // clear disksinPlay
             disksInPlay = []
-            // put eventlistener for firstclick back
+            // enable diskclick
             enableDiskClick()
             disableRodClick()
-            // check for a win
-            checkForWin()
+        // otherwise, 
         } else {
-            // Add this text to 'message'
-            document.querySelector("#message").innerHTML = "Illegal move, please try again"
-            // remove last item from disksInPlay
-            disksInPlay.pop()
-            // disable event listener for firstClick
-            removeDiskClick()
+            // make a copy of the last number of the selected rod array, then
+            let copyOfLast = currentRodArray[(currentRodArray.length)-1]
+            // push that copy to disksInPlay, then
+            disksInPlay.push(copyOfLast)
+            // console.log(disksInPlay)
+            // compare values
+            if (disksInPlay[0] < disksInPlay[1]) {
+                // push the disk from firstClick to the rod array selected in secondClick, then
+                // how to refer to diskID when it was created locally
+                currentRodArray.push(disksInPlay[0])
+                // clear disksInPlay
+                disksInPlay = []
+                // put eventlistener for firstclick back
+                enableDiskClick()
+                disableRodClick()
+                // check for a win
+                checkForWin()
+            } else {
+                // Add this text to 'message'
+                document.querySelector("#message").innerHTML = "Illegal move, please try again"
+                // remove last item from disksInPlay
+                disksInPlay.pop()
+                // disable event listener for firstClick
+                removeDiskClick()
+            }
+            
         }
-        
     }
 }
 // create logic to check for win
