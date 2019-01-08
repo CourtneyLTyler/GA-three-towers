@@ -4,9 +4,9 @@ let rod2 = []
 let rod3 = []
 
 // grab disks and store in variables
-const diskSm1 = document.querySelector('#small-disk')
-const diskMd2 = document.querySelector('#med-disk')
-const diskLg3 = document.querySelector('#lg-disk')
+const diskSm1 = document.querySelector('#sm')
+const diskMd2 = document.querySelector('#md')
+const diskLg3 = document.querySelector('#lg')
 
 // grab rods and store in variables
 const rodObj1 = document.querySelector('#rod-1')
@@ -45,21 +45,29 @@ function enableDiskClick() {
 }
 
 // declare fx to disable the disk clicks
-function removeDiskClick() {
+function disableDiskClick() {
     diskSm1.removeEventListener("click", diskClick)
     diskMd2.removeEventListener("click", diskClick)
     diskLg3.removeEventListener("click", diskClick)
 }
 
 // add listen for click to the rods, execute 2nd click fx
-rodObj1.addEventListener('click', rodClick)
-rodObj2.addEventListener('click', rodClick)
-rodObj3.addEventListener('click', rodClick)
+function enableRodClick() {
+    rodObj1.addEventListener('click', rodClick)
+    rodObj2.addEventListener('click', rodClick)
+    rodObj3.addEventListener('click', rodClick)
+}
+
+function disableRodClick() {
+    rodObj1.removeEventListener("click", rodClick)
+    rodObj2.removeEventListener("click", rodClick)
+    rodObj3.removeEventListener("click", rodClick)
+}
 
 // declare fx for when a disk is clicked
 function diskClick() {
     // store the current disk's data-id in 'diskId'
-	let diskId = event.target.getAttribute("data-id")
+    let diskId = event.target.getAttribute('data-id')
     // // create copy of the clicked disk
     // let diskCopy = diskId
     // move the clicked disk's id to the inPlay array
@@ -69,6 +77,7 @@ function diskClick() {
     // console.log(disksInPlay)
      // remove the firstClick fx, then
     // event.target.removeEventListener("click", firstClick)
+    enableRodClick()
 }
 
 // create event listener for the click on the rod, that would execute the following
@@ -105,6 +114,9 @@ function rodClick() {
         document.querySelector("#message").innerHTML = "Click on the next disk to move!"
         // clear disksinPlay
         disksInPlay = []
+        // enable diskclick
+        enableDiskClick()
+        disableRodClick()
     // otherwise, 
     } else {
          // make a copy of the last number of the selected rod array, then
@@ -121,13 +133,14 @@ function rodClick() {
             disksInPlay = []
             // put eventlistener for firstclick back
             enableDiskClick()
+            disableRodClick()
             // check for a win
             checkForWin()
         } else {
             // Add this text to 'message'
             document.querySelector("#message").innerHTML = "Illegal move, please try again"
             // remove last item from disksInPlay
-            disksInPlay.pop
+            disksInPlay.pop()
             // disable event listener for firstClick
             removeDiskClick()
         }
