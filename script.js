@@ -89,8 +89,8 @@ function rodClick() {
     // if (rodId == 'rod-2') // use rod2
     // if (rodId == 'rod-3') // use rod3
     // // console.log(rodId)
-
-    
+ 
+    // run the check function with the corresponding rod array as the parameter
     if(rodId == 'rod-1') {
         // rod1.push(disksInPlay)
         check(rod1)
@@ -101,27 +101,12 @@ function rodClick() {
         // rod3.push(disksInPlay)
         check(rod3)
     }
-   
-
-    // // switch statements?
-    // switch(rodId) {
-    //     case 'rod-1':
-    //     let currentRodArray = rod1;
-    //     break;
-    //     case 'rod-2':
-    //     let currentRodArray = rod2;
-    //     break;
-    //     case 'rod-3':
-    //     let currentRodArray = rod3;
-    //     break;
-    // }
-
-    
-    // if the current rod array is empty, 
+       
     function check(rodx) {
-        
-    // console.log(currentRodArray)
-        if (rodx = []) {
+    console.log(rod3)
+    console.log(disksInPlay)
+    // if the current rod array is empty, 
+        if (rodx = []) { 
             // push first item of disksInPlay to the selected rod array
             rodx.push(disksInPlay[0])
             // console.log(disksInPlay)
@@ -169,7 +154,5 @@ let checkForWin = () => {
     if (rod3 === [3,2,1]) {
         // Add this text to 'message'
         document.querySelector("#message").innerHTML = "Congratulations, you have won the game!  Hit reset to play again!"
-        // clear disksInPlay
-        disksInPlay = []
     }
 }
