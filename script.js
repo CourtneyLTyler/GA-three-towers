@@ -1,19 +1,24 @@
-// Create rods as arrays
+// Create rod arrays
 let rod1 = []
 let rod2 = []
 let rod3 = []
 
-// Create disks as numbers
-const disk1sm = 1
-const disk2md = 2
-const disk3lg = 3
+// grab rods and store in variables
+const rodObj1 = document.querySelector('#rod-1')
+const rodObj2 = document.querySelector('#rod-2')
+const rodObj3 = document.querySelector('#rod-3')
+
+// grab disks and store in variables
+const diskSm1 = document.querySelector('#small-disk')
+const diskMd2 = document.querySelector('#med-disk')
+const diskLg3 = document.querySelector('#lg-disk')
 
 // array for disks in play
 let disksInPlay = []
 
 // function to start or restart the game
 let gameStart = () => {
-    rod1.push(disk3lg, disk2md, disk1sm)
+    rod1.push(diskLg3, diskMd2, diskSm1)
     disksInPlay = []
     rod2 = []
     rod3 = []
@@ -22,7 +27,14 @@ let gameStart = () => {
 
 // test gameStart
 gameStart()
-console.log(rod1) // logs [3,2,1]
+console.log(rod1) 
+
+
+// get reset button, store in 'resetButton'
+let resetButton = document.querySelector(".reset")
+// add the reset fx to the reset button
+resetButton.addEventListener("click", gameStart)
+
 
 // create event listener for the first click on a disk, that would execute the following
 // 
@@ -45,14 +57,15 @@ let secondClick = () => {
         // push disksInPlay[0] to the selected rod
         rodId.push(disksInPlay[0])
     // otherwise, 
-    } else if {
-        // make a copy of the last number of the selected rod array, then
+    } else {
+         // make a copy of the last number of the selected rod array, then
         let copyOfLast = rodId[(rodId.length)-1]
         // push that copy to disksInPlay, then
         disksInPlay.push(copyOfLast)
         // compare values
         if (disksInPlay[0] < disksInPlay[1]) {
             // push the disk from firstClick to the rod array selected in secondClick, then
+            // how to refer to diskID when it was created locally
             rodId.push(diskId)
             // clear disksInPlay
             disksInPlay = []
