@@ -33,11 +33,10 @@ gameStart()
 
 // get reset button, store in 'resetButton'
 let resetButton = document.querySelector(".reset")
-
 // add the gameStart fx to the reset button
 resetButton.addEventListener("click", gameStart)
 
-// add listen to clicks to the disks, execute 1st click fx
+// add listener clicks to the disks, execute diskClick fx
 function enableDiskClick() {
     diskSm1.addEventListener('click', diskClick)
     diskMd2.addEventListener('click', diskClick)
@@ -68,8 +67,6 @@ function disableRodClick() {
 function diskClick() {
     // store the current disk's data-id in 'diskId'
     let diskId = event.target.getAttribute('data-id')
-    // // create copy of the clicked disk
-    // let diskCopy = diskId
     // move the clicked disk's id to the inPlay array
     disksInPlay.push(diskId)
     // Add this text to 'message'
@@ -80,33 +77,28 @@ function diskClick() {
     enableRodClick()
 }
 
-// create event listener for the click on the rod, that would execute the following
+
 function rodClick() {
-    // store the current rod's id in 'rodId'
+    // store the clicked rod's id in 'rodId'
     let rodId = event.target.getAttribute("id")
-    
-    // if (rodId == 'rod-1') // use rod1 array below
-    // if (rodId == 'rod-2') // use rod2
-    // if (rodId == 'rod-3') // use rod3
-    // // console.log(rodId)
  
-    // run the check function with the corresponding rod array as the parameter
+    // find the array that corresponds with the clicked rod
     if(rodId == 'rod-1') {
-        // rod1.push(disksInPlay)
+        // run check below, using rod1
         check(rod1)
     } else if (rodId == 'rod-2') {
-        // rod2.push(disksInPlay)
+        // run check below, using rod2
         check(rod2)
     } else if (rodId == 'rod-3') {
-        // rod3.push(disksInPlay)
+        // run check below, using rod3
         check(rod3)
     }
        
     function check(rodx) {
-    console.log(rod3)
-    console.log(disksInPlay)
+        console.log(rod3)
+        console.log(disksInPlay)
     // if the current rod array is empty, 
-        if (rodx = []) { 
+        if (rodx.length < 1) { 
             // push first item of disksInPlay to the selected rod array
             rodx.push(disksInPlay[0])
             // console.log(disksInPlay)
@@ -142,8 +134,6 @@ function rodClick() {
                 document.querySelector("#message").innerHTML = "Illegal move, please try again"
                 // remove last item from disksInPlay
                 disksInPlay.pop()
-                // disable event listener for firstClick
-                removeDiskClick()
             }
             
         }
