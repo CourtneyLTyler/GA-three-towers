@@ -56,6 +56,8 @@ let secondClick = () => {
             rodId.push(diskId)
             // clear disksInPlay
             disksInPlay = []
+            // check for a win
+            checkForWin()
         } else {
             alert("Illegal move, please try again")
             // clear disksInPlay
@@ -65,3 +67,9 @@ let secondClick = () => {
     }
 }
 
+// create logic to check for win
+let checkForWin = () => {
+    if (rod3 === [3,2,1]) {
+        alert("Congratulations, you have won the game!  Hit reset to play again!")
+    }
+}
