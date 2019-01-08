@@ -85,22 +85,25 @@ function rodClick() {
     // find the array that corresponds with the clicked rod
     if(rodId == 'rod-1') {
         // run check below, using rod1
-        check(rod1)
+        let parent1 = document.querySelector('#rodcol1')
+        check(rod1,parent1)
     } else if (rodId == 'rod-2') {
         // run check below, using rod2
-        check(rod2)
+        let parent2 = document.querySelector('#rodcol2')
+        check(rod2,parent2)
     } else if (rodId == 'rod-3') {
         // run check below, using rod3
-        check(rod3)
+        let parent3 = document.querySelector('#rodcol3')
+        check(rod3,parent3)
     }
        
-    function check(rodx) {
-        console.log(rod3)
-        console.log(disksInPlay)
+    function check(rodx,parent) {
     // if the current rod array is empty, 
         if (rodx.length < 1) { 
             // push first item of disksInPlay to the selected rod array
             rodx.push(disksInPlay[0])
+            let child = document.querySelector('[data-id=disksInPlay[0]]')
+            parent.appendChild(child)
             // console.log(disksInPlay)
             // console.log(currentRodArray)
             // add text to message
