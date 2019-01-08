@@ -36,27 +36,52 @@ let resetButton = document.querySelector(".reset")
 // add the gameStart fx to the reset button
 resetButton.addEventListener("click", gameStart)
 
-// create fx for when a disk is clicked
-let firstClick = () => {
-    // store the current disk's data-id in 'diskId'
-	let diskId = event.target.getAttribute("data-id")
-    // create copy of the clicked disk
-    let diskCopy = diskId
-    // code to move the clicked disk copy to the inPlay array
-    disksInPlay.push(diskCopy)
-    // Add this text to 'message'
-    document.querySelector("#message").innerHTML = "Where would you like to move your disk? Click on the rod"
-}
-
 // add listen to clicks to the disks, execute 1st click fx
 diskSm1.addEventListener('click', firstClick)
 diskMd2.addEventListener('click', firstClick)
 diskLg3.addEventListener('click', firstClick)
 
-// create event listener for the second click on the rod, that would execute the following
+// declare fx for when a disk is clicked -hoisted
+function firstClick() {
+    // store the current disk's data-id in 'diskId'
+	let diskId = event.target.getAttribute("data-id")
+    // // create copy of the clicked disk
+    // let diskCopy = diskId
+    // move the clicked disk's id to the inPlay array
+    disksInPlay.push(diskId)
+    // Add this text to 'message'
+    document.querySelector("#message").innerHTML = "Where would you like to move your disk? Click on the rod"
+    console.log(disksInPlay)
+     // remove the changePlayer fx, then
+    event.target.removeEventListener("click", firstClick)
+}
+
+// create event listener for the click on the rod, that would execute the following
 let secondClick = () => {
     // store the current rod's id in 'rodId'
-	let rodId = event.target.getAttribute("id");
+    let rodId = event.target.getAttribute("id");
+
+    // if (rodId == 'rod-1') // use rod1 
+    // if (rodId == 'rod-2') // use rod2
+    // if (rodId == 'rod-3') // use rod3
+
+    // switch statements?
+    switch(rodId) {
+        case 'rod-1':
+        rodId = rod1
+        break
+        case 'rod-2':
+        rodId = rod2
+        break
+        case 'rod-2':
+        rodId = rod2
+        break
+    }
+    console.log(rodId)
+
+
+
+    
     // if the current rod array is empty, 
     if (rodId = []) {
         // push disksInPlay[0] to the selected rod
