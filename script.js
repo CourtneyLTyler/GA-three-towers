@@ -63,6 +63,16 @@ function disableRodClick() {
     rodObj3.removeEventListener("click", rodClick)
 }
 
+// create logic to check for win
+function checkForWin() {
+    console.log("I'm checking for a winner " + rod3)
+    if (rod3.includes('a','b','c')) {
+        console.log("show state of rod 3 " + rod3)
+        // Add this text to 'message'
+        document.querySelector("#message").innerHTML = "Congratulations, you have won the game!  Hit reset to play again!"   
+    }
+}
+
 // putting the wasStackedOn parent ID here
 let rodEval = []
 
@@ -183,7 +193,6 @@ function rodClick() {
                 disableRodClick()
                 // check for a win
                 checkForWin()
-                console.log("show state of rod 3 " + rod3)
             } else {
                 // Add this text to 'message'
                 document.querySelector("#message").innerHTML = "Illegal move, please try again"
@@ -194,13 +203,7 @@ function rodClick() {
         }
     }
 }
-// create logic to check for win
-let checkForWin = () => {
-    if (rod3 === [c,b,a]) {
-        // Add this text to 'message'
-        document.querySelector("#message").innerHTML = "Congratulations, you have won the game!  Hit reset to play again!"
-    }
-}
+
 
 
 
