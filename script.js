@@ -8,6 +8,11 @@ const diskSm1 = document.querySelector('#a')
 const diskMd2 = document.querySelector('#b')
 const diskLg3 = document.querySelector('#c')
 
+// grab disk ids
+const diskId1 = diskSm1.getAttribute("id")
+const diskId2 = diskMd2.getAttribute("id")
+const diskId3 = diskLg3.getAttribute("id")
+
 // grab rods and store in variables
 const rodObj1 = document.querySelector('#rod-1')
 const rodObj2 = document.querySelector('#rod-2')
@@ -18,7 +23,7 @@ let disksInPlay = []
 
 // function to start or restart the game
 let gameStart = () => {
-    rod1.push(diskLg3, diskMd2, diskSm1)
+    rod1.push(diskId3, diskId2, diskId1)
     // position the disks in rodcol1
     let startParent = document.getElementById('rodcol1')
     startParent.insertBefore(diskLg3, startParent.childNodes[0])
@@ -69,14 +74,6 @@ function disableRodClick() {
     rodObj3.removeEventListener("click", rodClick)
 }
 
-// console.log(array1.every(array1.includes('a','b','c')));
-
-// How do I get this to make sure the array has all three????
-let testArray = ['testy', 'test', 'test']
-console.log(testArray.length === 3)
-// console.log(testArray)
-// console.log(testArray)
-
 // create logic to check for win
 function checkForWin() {
     console.log("I'm checking for a winner " + rod3)
@@ -84,6 +81,8 @@ function checkForWin() {
         console.log("show state of rod 3 " + rod3)
         // Add this text to 'message'
         document.querySelector("#message").innerHTML = "Congratulations, you have won the game!  Hit reset to play again!"   
+        disableDiskClick()
+        disableRodClick()
     }
 }
 
@@ -94,24 +93,20 @@ let rodEval = []
 function diskClick() {
     // store the current disk's id in 'diskId'
     let diskId = event.target.getAttribute("id")
+    // grab the disk element
     let diskNode = document.getElementById(diskId)
-    console.log("this is the disk node" + diskNode)
     // need a var to represent the rod it's stacked on
-    // this won't work because scope - move to global array
     let wasStackedOn = diskNode.parentNode
+    // create var to store the parent id
     let stackedOnId = wasStackedOn.getAttribute("id")
-    console.log("this is the col it was stacked in " + wasStackedOn)
-    console.log("this is the id of the col it was stacked in " + stackedOnId)
     // move the clicked disk's id to the inPlay array
     disksInPlay.push(diskId)
+    // make the rod it was stacked on' id global
     rodEval.push(stackedOnId)
     // Add this text to 'message'
     document.querySelector("#message").innerHTML = "Where would you like to move your disk? Click on the rod"
-    console.log("has the clicked disk's id " + disksInPlay)
-     // remove the firstClick fx, then
-    // event.target.removeEventListener("click", firstClick)
     enableRodClick()
-    console.log("this has the parent id " + rodEval)
+    disableDiskClick()
 }
 
 
@@ -142,26 +137,30 @@ function rodClick() {
 
             let currentDiskObj = document.getElementById(disksInPlay[0])
             
-            console.log("rod was empty, now it has " + rodx)
-            
-            console.log("this is the disk just clicked " + currentDiskObj)
 
+            // moves the disk to the correct column
             parent.insertBefore(currentDiskObj, parent.childNodes[0])
+
             // removes the disk from its prior array
             if(rodEval == 'rodcol1') {
                 // remove last disk from rod1 array
                 rod1.pop()
-                console.log("this should have rod1 array w/only two " + rod1)
+                
+                // clear rodEval
+                rodEval = []
             } else if (rodEval == 'rodcol2') {
                 rod2.pop()
-                console.log("this should have rod2 array minus one " + rod2)
+                // clear rodEval
+                rodEval = []
             } else if (rodEval == 'rodcol3') {
                 rod3.pop()
-                console.log("this should have rod3 array minus one " + rod3)
+                
+                // clear rodEval
+                rodEval = []
             }
+            
             // clear rodEval
             rodEval = []
-
             document.querySelector("#message").innerHTML = "Click on the next disk to move!"
             // clear disksinPlay
             disksInPlay = []
@@ -172,12 +171,10 @@ function rodClick() {
         } else {
             // make a copy of the last number of the selected rod array, then
             let copyOfLast = rodx[((rodx.length)-1)]
-            // change it to a string
-            // let stringyCopy = String(copyOfLast)
-            console.log("this should be a string" + copyOfLast)
+            
             // push that copy to disksInPlay, then
             disksInPlay.push(copyOfLast)
-            console.log("has previous disk and " + disksInPlay)
+            
             // is move legal? if so,
             if (disksInPlay[0] < disksInPlay[1]) {
                 // push the disk from firstClick to the rod array selected in secondClick, then
@@ -190,13 +187,13 @@ function rodClick() {
                 if(rodEval == 'rodcol1') {
                     // remove last disk from rod1 array
                     rod1.pop()
-                    console.log("this should have rod1 array w/only two " + rod1)
+                    
                 } else if (rodEval == 'rodcol2') {
                     rod2.pop()
-                    console.log("this should have rod2 array minus one " + rod2)
+                   
                 } else if (rodEval == 'rodcol3') {
                     rod3.pop()
-                    console.log("this should have rod3 array minus one " + rod3)
+                    
                 }
                 // clear rodEval
                 rodEval = []
@@ -212,9 +209,12 @@ function rodClick() {
                 document.querySelector("#message").innerHTML = "Illegal move, please try again"
                 // remove last item from disksInPlay
                 disksInPlay.pop()
+                // clear rodEval
+                rodEval = []
             }
             
         }
+    console.log("end of turn rod1, rod2, rod3 " + rod1 + " " + rod2 + " " + rod3)    
     }
 }
 
