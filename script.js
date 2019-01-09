@@ -132,9 +132,9 @@ function rodClick() {
             if (disksInPlay[0] < disksInPlay[1]) {
                 // push the disk from firstClick to the rod array selected in secondClick, then
                 // how to refer to diskID when it was created locally
-                rodx.push(disksInPlay[1])
+                rodx.push(disksInPlay[0])
                 // move the disk to the rod
-                let smallerDisk = document.getElementById(disksInPlay[1])
+                let smallerDisk = document.getElementById(disksInPlay[0])
                 parent.insertBefore(smallerDisk, parent.childNodes[0])
                 // clear disksInPlay
                 disksInPlay = []
