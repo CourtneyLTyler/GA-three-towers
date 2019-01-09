@@ -66,12 +66,12 @@ function disableRodClick() {
 // declare fx for when a disk is clicked
 function diskClick() {
     // store the current disk's data-id in 'diskId'
-    let diskId = event.target.getAttribute.id
+    let diskId = event.target.getAttribute("id")
     // move the clicked disk's id to the inPlay array
     disksInPlay.push(diskId)
     // Add this text to 'message'
     document.querySelector("#message").innerHTML = "Where would you like to move your disk? Click on the rod"
-    // console.log(disksInPlay)
+    console.log("has the clicked disk's id " + disksInPlay)
      // remove the firstClick fx, then
     // event.target.removeEventListener("click", firstClick)
     enableRodClick()
@@ -97,19 +97,18 @@ function rodClick() {
         check(rod3,parent3)
     }
        
-    function check(rodx,parent) {
+    function check(rodx, parent) {
     // if the current rod array is empty, 
         if (rodx.length < 1) { 
             // push first item of disksInPlay to the selected rod array
             rodx.push(disksInPlay[0])
+            console.log("rod was empty, now it has " + rodx)
             // this is querySelector does not work
-            let dataAtt = document.getElementById('a')
-            console.log(" bslfhsdlf" + dataAtt)
-            // var newElement = document.createElement('p');
-            // newElement.innerHTML = '1';
+            let dataAtt = document.getElementById(disksInPlay[0])
+            console.log("this is the disk just clicked " + dataAtt)
+
             
-            
-            parent.appendChild(dataAtt)
+            parent.insertBefore(dataAtt, parent.childNodes[0])
             // console.log(disksInPlay)
             // console.log(currentRodArray)
             // add text to message
@@ -122,15 +121,21 @@ function rodClick() {
         // otherwise, 
         } else {
             // make a copy of the last number of the selected rod array, then
-            let copyOfLast = rodx[(rodx.length)-1]
+            let copyOfLast = rodx[((rodx.length)-1)]
+            // change it to a string
+            let copyToString = "" + copyOfLast
+            console.log("this should be a string" + copyToString)
             // push that copy to disksInPlay, then
-            disksInPlay.push(copyOfLast)
-            // console.log(disksInPlay)
+            disksInPlay.push(copyToString)
+            console.log("has previous disk and " + disksInPlay)
             // compare values
-            if (disksInPlay[0] < disksInPlay[1]) {
+            if (disksInPlay[0] > disksInPlay[1]) {
                 // push the disk from firstClick to the rod array selected in secondClick, then
                 // how to refer to diskID when it was created locally
-                rodx.push(disksInPlay[0])
+                rodx.push(disksInPlay[1])
+                // move the disk to the rod
+                let smallerDisk = document.getElementById(disksInPlay[1])
+                parent.insertBefore(smallerDisk, parent.childNodes[0])
                 // clear disksInPlay
                 disksInPlay = []
                 // put eventlistener for firstclick back
