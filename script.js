@@ -69,10 +69,18 @@ function disableRodClick() {
     rodObj3.removeEventListener("click", rodClick)
 }
 
+// console.log(array1.every(array1.includes('a','b','c')));
+
+// How do I get this to make sure the array has all three????
+let testArray = ['testy', 'test', 'test']
+console.log(testArray.length === 3)
+// console.log(testArray)
+// console.log(testArray)
+
 // create logic to check for win
 function checkForWin() {
     console.log("I'm checking for a winner " + rod3)
-    if (rod3.includes('a','b','c')) {
+    if (rod3.length ===3) {
         console.log("show state of rod 3 " + rod3)
         // Add this text to 'message'
         document.querySelector("#message").innerHTML = "Congratulations, you have won the game!  Hit reset to play again!"   
