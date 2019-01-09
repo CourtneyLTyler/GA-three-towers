@@ -165,7 +165,7 @@ function rodClick() {
             // push first item of disksInPlay to the selected rod array
             rodx.push(disksInPlay[0])
 // this isn't working
-            console.log("this is disksInPlay[0]" + disksInPlay[0])
+            console.log("this is disksInPlay[0]" + disksInPlay)
             let currentDiskObj = document.getElementById(disksInPlay[0])
             console.log("this is the currentDisk Obj, is node? " + currentDiskObj)
             
@@ -188,7 +188,7 @@ function rodClick() {
             
             document.querySelector("#message").innerHTML = "Click on the next disk to move!"
             // clear disksinPlay
-            disksInPlay = []
+            disksInPlay.length = 0
             // enable diskclick
             enableDiskClick()
             disableRodClick()
@@ -224,8 +224,7 @@ function rodClick() {
                     rodEval = []
                     
                 }
-                
-                
+                document.querySelector("#message").innerHTML = "Click on the next disk to move!"
                 // clear disksInPlay
                 disksInPlay = []
                 // put eventlistener for firstclick back
