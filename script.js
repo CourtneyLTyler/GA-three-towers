@@ -63,7 +63,7 @@ function disableRodClick() {
     rodObj3.removeEventListener("click", rodClick)
 }
 
-// putting the wasStackedOn parent here
+// putting the wasStackedOn parent ID here
 let rodEval = []
 
 // declare fx for when a disk is clicked
@@ -75,17 +75,19 @@ function diskClick() {
     // need a var to represent the rod it's stacked on
     // this won't work because scope - move to global array
     let wasStackedOn = diskNode.parentNode
-    console.log("this is the col it was stacked on " + wasStackedOn)
+    let stackedOnId = wasStackedOn.getAttribute("id")
+    console.log("this is the col it was stacked in " + wasStackedOn)
+    console.log("this is the id of the col it was stacked in " + stackedOnId)
     // move the clicked disk's id to the inPlay array
     disksInPlay.push(diskId)
-    rodEval.push(wasStackedOn)
+    rodEval.push(stackedOnId)
     // Add this text to 'message'
     document.querySelector("#message").innerHTML = "Where would you like to move your disk? Click on the rod"
     console.log("has the clicked disk's id " + disksInPlay)
      // remove the firstClick fx, then
     // event.target.removeEventListener("click", firstClick)
     enableRodClick()
-    console.log("this has the parent object " + rodEval)
+    console.log("this has the parent id " + rodEval)
 }
 
 
@@ -107,6 +109,22 @@ function rodClick() {
         let parent3 = document.querySelector('#rodcol3')
         check(rod3,parent3)
     }
+
+    // find the array that corresponds with the prior rod
+    // need to fill this in to connect the parent array of/the prior rod
+    if(rodEval == 'rodcol1') {
+        // run check below, using rod1
+        let parent1 = document.querySelector('#rodcol1')
+        check(rod1,parent1)
+    } else if (rodId == 'rod-2') {
+        // run check below, using rod2
+        let parent2 = document.querySelector('#rodcol2')
+        check(rod2,parent2)
+    } else if (rodId == 'rod-3') {
+        // run check below, using rod3
+        let parent3 = document.querySelector('#rodcol3')
+        check(rod3,parent3)
+    }
        
     function check(rodx, parent) {
     // if the current rod array is empty, 
@@ -115,18 +133,21 @@ function rodClick() {
             rodx.push(disksInPlay[0])
 
             let currentDiskObj = document.getElementById(disksInPlay[0])
-            // remove the diskinplay from the prior rod array
-
+            
             console.log("rod was empty, now it has " + rodx)
-            // this is querySelector does not work
             
             console.log("this is the disk just clicked " + currentDiskObj)
 
-            
             parent.insertBefore(currentDiskObj, parent.childNodes[0])
             // console.log(disksInPlay)
             // console.log(currentRodArray)
             // add text to message
+
+            // remove the disk from the prior rod array
+            // rodEval is array that holds the prior rod parent id
+            // determine the rod array based on the parent id
+
+
             document.querySelector("#message").innerHTML = "Click on the next disk to move!"
             // clear disksinPlay
             disksInPlay = []
