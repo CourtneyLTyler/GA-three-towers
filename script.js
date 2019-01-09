@@ -30,9 +30,9 @@ let gameStart = () => {
     startParent.insertBefore(diskMd2, startParent.childNodes[0])
     startParent.insertBefore(diskSm1, startParent.childNodes[0])
     
-    disksInPlay = []
-    rod2 = []
-    rod3 = []
+    disksInPlay.length = 0
+    rod2.length = 0
+    rod3.length = 0
     // Add this text to 'message'
     document.querySelector("#message").innerHTML = "Ready to play? Click on the top disk!"
     diskSm1.addEventListener('click', diskClick)
@@ -100,11 +100,39 @@ function diskClick() {
     // create var to store the parent id
     let stackedOnId = wasStackedOn.getAttribute("id")
     // move the clicked disk's id to the inPlay array
-    console.log("this is the stackedOnId " + stackedOnId)
-    // if it is the smallest disk in the rod array
-    // if the disk id is <= all of the other siblings ids OR the other ids in the array
-    // if (diskId <= the other ids in the corresponding prior rod array
 
+    if(stackedOnId == 'rodcol1') {
+        checkIfSmallest(rod1)
+    } else if (stackedOnId == 'rodcol2') {
+        checkIfSmallest(rod2)
+    } else if (stackedOnId == 'rodcol3') {
+        checkIfSmallest(rod3)
+    }
+
+    // function checkIfSmallest(rodNum){
+        
+    //     for(i=0;i<rodNum.length;i++) {
+    //         if (diskId > rodNum[i]) {
+    //              // Add this text to 'message'
+    //             document.querySelector("#message").innerHTML = "Illegal move, please try again"
+    //         }
+    //     }   
+    // }
+
+    function checkIfSmallest(rodNum){
+        console.log("rod array when checking for legal click " + rodNum)
+        if (diskId > rodNum[1]) {
+            document.querySelector("#message").innerHTML = "Illegal move, please try again"
+        } else {
+            restOfFunction()
+        }
+        for(i=0;i<rodNum.length;i++) {
+            if (diskId > rodNum[i]) {
+                 // Add this text to 'message'
+                
+            }
+        }   
+    }
 
     function restOfFunction() {
         disksInPlay.push(diskId)
@@ -115,29 +143,6 @@ function diskClick() {
         enableRodClick()
         disableDiskClick()
     }
-
-    function checkIfSmallest(rodNum){
-        for(i=0;i<rodNum.length;i++) {
-            if (diskId > rodNum[i]) {
-                 // Add this text to 'message'
-                document.querySelector("#message").innerHTML = "Illegal move, please try again"
-            } 
-        }   
-    }
-
-    if(stackedOnId == 'rodcol1') {
-        checkIfSmallest(rod1)
-        restOfFunction()
-    } else if (stackedOnId == 'rodcol2') {
-        checkIfSmallest(rod2)
-        restOfFunction()
-    } else if (stackedOnId == 'rodcol3') {
-        checkIfSmallest(rod3)
-        restOfFunction()
-    } else {
-        // Add this text to 'message'
-        document.querySelector("#message").innerHTML = "Illegal move, please try again"
-    }  
 }
 
 
@@ -177,13 +182,13 @@ function rodClick() {
             if(rodEval == 'rodcol1') {
                 // remove last disk from rod1 array
                 rod1.pop()
-                rodEval = []
+                rodEval.length = 0
             } else if (rodEval == 'rodcol2') {
                 rod2.pop()
-                rodEval = []
+                rodEval.length = 0
             } else if (rodEval == 'rodcol3') {
                 rod3.pop()   
-                rodEval = []
+                rodEval.length = 0
             }
             
             document.querySelector("#message").innerHTML = "Click on the next disk to move!"
@@ -213,15 +218,15 @@ function rodClick() {
                 if(rodEval == 'rodcol1') {
                     // remove last disk from rod1 array
                     rod1.pop()
-                    rodEval = []
+                    rodEval.length = 0
                     
                 } else if (rodEval == 'rodcol2') {
                     rod2.pop()
-                    rodEval = []
+                    rodEval.length = 0
                    
                 } else if (rodEval == 'rodcol3') {
                     rod3.pop()
-                    rodEval = []
+                    rodEval.length = 0
                     
                 }
                 document.querySelector("#message").innerHTML = "Click on the next disk to move!"
