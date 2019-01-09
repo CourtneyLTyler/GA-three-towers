@@ -19,6 +19,12 @@ let disksInPlay = []
 // function to start or restart the game
 let gameStart = () => {
     rod1.push(diskLg3, diskMd2, diskSm1)
+    // position the disks in rodcol1
+    let startParent = document.getElementById('rodcol1')
+    startParent.insertBefore(diskLg3, startParent.childNodes[0])
+    startParent.insertBefore(diskMd2, startParent.childNodes[0])
+    startParent.insertBefore(diskSm1, startParent.childNodes[0])
+    
     disksInPlay = []
     rod2 = []
     rod3 = []
