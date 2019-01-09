@@ -102,7 +102,8 @@ function rodClick() {
         if (rodx.length < 1) { 
             // push first item of disksInPlay to the selected rod array
             rodx.push(disksInPlay[0])
-            let child = document.querySelector('[data-id=disksInPlay[0]]')
+            // this is querySelector does not work
+            let child = document.querySelectorAll("[data-id='1']")
             parent.appendChild(child)
             // console.log(disksInPlay)
             // console.log(currentRodArray)
