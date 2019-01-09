@@ -16,6 +16,10 @@ const rodObj3 = document.querySelector('#rod-3')
 // array for disks in play
 let disksInPlay = []
 
+let testArray = ['testy', 'test', 'test']
+let otherArray = ['testy', 'test', 'test']
+if(otherArray = ['testy', 'test', 'test']) {console.log("so testy!")}
+
 // function to start or restart the game
 let gameStart = () => {
     rod1.push(diskLg3, diskMd2, diskSm1)
@@ -35,6 +39,16 @@ gameStart()
 let resetButton = document.querySelector(".reset")
 // add the gameStart fx to the reset button
 resetButton.addEventListener("click", gameStart)
+
+// create logic to check for win
+function checkForWin() {
+    console.log(rod3 = ['c','b','a'])
+    if (rod3 = ['c','b','a']) {
+        // Add this text to 'message'
+        document.querySelector("#message").innerHTML = "Congratulations, you have won the game!  Hit reset to play again!"
+        console.log("winner winner chicken dinner")
+    }
+}
 
 // add listener clicks to the disks, execute diskClick fx
 function enableDiskClick() {
@@ -192,12 +206,5 @@ function rodClick() {
             }
             
         }
-    }
-}
-// create logic to check for win
-let checkForWin = () => {
-    if (rod3 === [c,b,a]) {
-        // Add this text to 'message'
-        document.querySelector("#message").innerHTML = "Congratulations, you have won the game!  Hit reset to play again!"
     }
 }
