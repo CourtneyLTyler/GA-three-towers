@@ -183,6 +183,7 @@ function rodClick() {
                 disableRodClick()
                 // check for a win
                 checkForWin()
+                console.log("show state of rod 3 " + rod3)
             } else {
                 // Add this text to 'message'
                 document.querySelector("#message").innerHTML = "Illegal move, please try again"
@@ -195,7 +196,7 @@ function rodClick() {
 }
 // create logic to check for win
 let checkForWin = () => {
-    if (rod3 === [3,2,1]) {
+    if (rod3 === [c,b,a]) {
         // Add this text to 'message'
         document.querySelector("#message").innerHTML = "Congratulations, you have won the game!  Hit reset to play again!"
     }
