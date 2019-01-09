@@ -123,13 +123,13 @@ function rodClick() {
             // make a copy of the last number of the selected rod array, then
             let copyOfLast = rodx[((rodx.length)-1)]
             // change it to a string
-            let copyToString = "" + copyOfLast
-            console.log("this should be a string" + copyToString)
+            // let stringyCopy = String(copyOfLast)
+            console.log("this should be a string" + copyOfLast)
             // push that copy to disksInPlay, then
-            disksInPlay.push(copyToString)
+            disksInPlay.push(copyOfLast)
             console.log("has previous disk and " + disksInPlay)
             // compare values
-            if (disksInPlay[0] > disksInPlay[1]) {
+            if (disksInPlay[0] < disksInPlay[1]) {
                 // push the disk from firstClick to the rod array selected in secondClick, then
                 // how to refer to diskID when it was created locally
                 rodx.push(disksInPlay[1])
