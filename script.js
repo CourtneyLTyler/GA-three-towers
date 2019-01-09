@@ -125,13 +125,7 @@ function diskClick() {
             document.querySelector("#message").innerHTML = "Illegal move, please try again"
         } else {
             restOfFunction()
-        }
-        for(i=0;i<rodNum.length;i++) {
-            if (diskId > rodNum[i]) {
-                 // Add this text to 'message'
-                
-            }
-        }   
+        }  
     }
 
     function restOfFunction() {
