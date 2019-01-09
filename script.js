@@ -164,8 +164,10 @@ function rodClick() {
         if (rodx.length < 1) { 
             // push first item of disksInPlay to the selected rod array
             rodx.push(disksInPlay[0])
-
+// this isn't working
+            console.log("this is disksInPlay[0]" + disksInPlay[0])
             let currentDiskObj = document.getElementById(disksInPlay[0])
+            console.log("this is the currentDisk Obj, is node? " + currentDiskObj)
             
             // moves the disk to the correct column
             parent.insertBefore(currentDiskObj, parent.childNodes[0])
@@ -238,6 +240,7 @@ function rodClick() {
                 disksInPlay=[]
                 // clear rodEval
                 rodEval = []
+                enableDiskClick()
             }
             
         }
