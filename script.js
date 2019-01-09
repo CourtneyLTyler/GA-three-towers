@@ -4,9 +4,9 @@ let rod2 = []
 let rod3 = []
 
 // grab disks and store in variables
-const diskSm1 = document.querySelector('#sm')
-const diskMd2 = document.querySelector('#md')
-const diskLg3 = document.querySelector('#lg')
+const diskSm1 = document.querySelector('#a')
+const diskMd2 = document.querySelector('#b')
+const diskLg3 = document.querySelector('#c')
 
 // grab rods and store in variables
 const rodObj1 = document.querySelector('#rod-1')
@@ -66,7 +66,7 @@ function disableRodClick() {
 // declare fx for when a disk is clicked
 function diskClick() {
     // store the current disk's data-id in 'diskId'
-    let diskId = event.target.getAttribute('data-id')
+    let diskId = event.target.getAttribute.id
     // move the clicked disk's id to the inPlay array
     disksInPlay.push(diskId)
     // Add this text to 'message'
@@ -103,8 +103,13 @@ function rodClick() {
             // push first item of disksInPlay to the selected rod array
             rodx.push(disksInPlay[0])
             // this is querySelector does not work
-            let child = document.querySelectorAll("[data-id='1']")
-            parent.appendChild(child)
+            let dataAtt = document.getElementById('a')
+            console.log(" bslfhsdlf" + dataAtt)
+            // var newElement = document.createElement('p');
+            // newElement.innerHTML = '1';
+            
+            
+            parent.appendChild(dataAtt)
             // console.log(disksInPlay)
             // console.log(currentRodArray)
             // add text to message
