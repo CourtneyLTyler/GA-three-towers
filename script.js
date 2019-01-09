@@ -23,6 +23,9 @@ let disksInPlay = []
 
 // function to start or restart the game
 let gameStart = () => {
+    rod1.length = 0
+    rod2.length = 0
+    rod3.length = 0
     rod1.push(diskId3, diskId2, diskId1)
     // position the disks in rodcol1
     let startParent = document.getElementById('rodcol1')
@@ -36,6 +39,7 @@ let gameStart = () => {
     // Add this text to 'message'
     document.querySelector("#message").innerHTML = "Ready to play? Click on the top disk!"
     diskSm1.addEventListener('click', diskClick)
+    console.log("this is rod1 at start of game" + rod1)
 }
 
 gameStart()
