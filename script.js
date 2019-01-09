@@ -109,22 +109,6 @@ function rodClick() {
         let parent3 = document.querySelector('#rodcol3')
         check(rod3,parent3)
     }
-
-    // find the array that corresponds with the prior rod
-    // need to fill this in to connect the parent array of/the prior rod
-    if(rodEval == 'rodcol1') {
-        // run check below, using rod1
-        let parent1 = document.querySelector('#rodcol1')
-        check(rod1,parent1)
-    } else if (rodId == 'rod-2') {
-        // run check below, using rod2
-        let parent2 = document.querySelector('#rodcol2')
-        check(rod2,parent2)
-    } else if (rodId == 'rod-3') {
-        // run check below, using rod3
-        let parent3 = document.querySelector('#rodcol3')
-        check(rod3,parent3)
-    }
        
     function check(rodx, parent) {
     // if the current rod array is empty, 
@@ -139,19 +123,24 @@ function rodClick() {
             console.log("this is the disk just clicked " + currentDiskObj)
 
             parent.insertBefore(currentDiskObj, parent.childNodes[0])
-            // console.log(disksInPlay)
-            // console.log(currentRodArray)
-            // add text to message
-
-            // remove the disk from the prior rod array
-            // rodEval is array that holds the prior rod parent id
-            // determine the rod array based on the parent id
-
+            // removes the disk from its prior array
+            if(rodEval == 'rodcol1') {
+                // remove last disk from rod1 array
+                rod1.pop()
+                console.log("this should have rod1 array w/only two " + rod1)
+            } else if (rodEval == 'rodcol2') {
+                rod2.pop()
+                console.log("this should have rod2 array minus one " + rod2)
+            } else if (rodEval == 'rodcol3') {
+                rod3.pop()
+                console.log("this should have rod3 array minus one " + rod3)
+            }
+            // clear rodEval
+            rodEval = []
 
             document.querySelector("#message").innerHTML = "Click on the next disk to move!"
             // clear disksinPlay
             disksInPlay = []
-            console.log("this should have two disks now" + rod1)
             // enable diskclick
             enableDiskClick()
             disableRodClick()
@@ -165,7 +154,7 @@ function rodClick() {
             // push that copy to disksInPlay, then
             disksInPlay.push(copyOfLast)
             console.log("has previous disk and " + disksInPlay)
-            // compare values
+            // is move legal? if so,
             if (disksInPlay[0] < disksInPlay[1]) {
                 // push the disk from firstClick to the rod array selected in secondClick, then
                 // how to refer to diskID when it was created locally
@@ -173,6 +162,20 @@ function rodClick() {
                 // move the disk to the rod
                 let smallerDisk = document.getElementById(disksInPlay[0])
                 parent.insertBefore(smallerDisk, parent.childNodes[0])
+                // removes the disk from its prior array
+                if(rodEval == 'rodcol1') {
+                    // remove last disk from rod1 array
+                    rod1.pop()
+                    console.log("this should have rod1 array w/only two " + rod1)
+                } else if (rodEval == 'rodcol2') {
+                    rod2.pop()
+                    console.log("this should have rod2 array minus one " + rod2)
+                } else if (rodEval == 'rodcol3') {
+                    rod3.pop()
+                    console.log("this should have rod3 array minus one " + rod3)
+                }
+                // clear rodEval
+                rodEval = []
                 // clear disksInPlay
                 disksInPlay = []
                 // put eventlistener for firstclick back
