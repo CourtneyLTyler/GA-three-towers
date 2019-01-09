@@ -63,18 +63,29 @@ function disableRodClick() {
     rodObj3.removeEventListener("click", rodClick)
 }
 
+// putting the wasStackedOn parent here
+let rodEval = []
+
 // declare fx for when a disk is clicked
 function diskClick() {
-    // store the current disk's data-id in 'diskId'
+    // store the current disk's id in 'diskId'
     let diskId = event.target.getAttribute("id")
+    let diskNode = document.getElementById(diskId)
+    console.log("this is the disk node" + diskNode)
+    // need a var to represent the rod it's stacked on
+    // this won't work because scope - move to global array
+    let wasStackedOn = diskNode.parentNode
+    console.log("this is the col it was stacked on " + wasStackedOn)
     // move the clicked disk's id to the inPlay array
     disksInPlay.push(diskId)
+    rodEval.push(wasStackedOn)
     // Add this text to 'message'
     document.querySelector("#message").innerHTML = "Where would you like to move your disk? Click on the rod"
     console.log("has the clicked disk's id " + disksInPlay)
      // remove the firstClick fx, then
     // event.target.removeEventListener("click", firstClick)
     enableRodClick()
+    console.log("this has the parent object " + rodEval)
 }
 
 
@@ -102,19 +113,24 @@ function rodClick() {
         if (rodx.length < 1) { 
             // push first item of disksInPlay to the selected rod array
             rodx.push(disksInPlay[0])
+
+            let currentDiskObj = document.getElementById(disksInPlay[0])
+            // remove the diskinplay from the prior rod array
+
             console.log("rod was empty, now it has " + rodx)
             // this is querySelector does not work
-            let dataAtt = document.getElementById(disksInPlay[0])
-            console.log("this is the disk just clicked " + dataAtt)
+            
+            console.log("this is the disk just clicked " + currentDiskObj)
 
             
-            parent.insertBefore(dataAtt, parent.childNodes[0])
+            parent.insertBefore(currentDiskObj, parent.childNodes[0])
             // console.log(disksInPlay)
             // console.log(currentRodArray)
             // add text to message
             document.querySelector("#message").innerHTML = "Click on the next disk to move!"
             // clear disksinPlay
             disksInPlay = []
+            console.log("this should have two disks now" + rod1)
             // enable diskclick
             enableDiskClick()
             disableRodClick()
