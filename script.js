@@ -14,14 +14,9 @@ const diskId2 = diskMd2.getAttribute("id")
 const diskId3 = diskLg3.getAttribute("id")
 
 // grab rodcols and store in variables
-const rodObj1 = document.querySelector('#rodcol1')
-const rodObj2 = document.querySelector('#rodcol2')
-const rodObj3 = document.querySelector('#rodcol3')
-// grab rods and store in variables
-const stick1 = document.querySelector('#stick1')
-const stick2 = document.querySelector('#stick2')
-const stick3 = document.querySelector('#stick3')
-console.log("this is stick one object,no? " + stick1)
+const rodObj1 = document.querySelector('#stick1')
+const rodObj2 = document.querySelector('#stick2')
+const rodObj3 = document.querySelector('#stick3')
 
 // array for disks in play
 let disksInPlay = []
@@ -29,30 +24,23 @@ let disksInPlay = []
 // function to start or restart the game
 let gameStart = () => {
     rod1.length = 0
-    rod2.length = 0
-    rod3.length = 0
+    // add the Ids to rod1 array
     rod1.push(diskId3, diskId2, diskId1)
     // position the disks in rodcol1
     let startParent = document.getElementById('rodcol1')
     startParent.appendChild(diskLg3)
     startParent.appendChild(diskMd2)
     startParent.appendChild(diskSm1)
-    // startParent.insertBefore(diskLg3, startParent.childNodes[0])
-    // startParent.insertBefore(diskMd2, startParent.childNodes[0])
-    // startParent.insertBefore(diskSm1, startParent.childNodes[0])
-    
     disksInPlay.length = 0
     rod2.length = 0
     rod3.length = 0
     // Add this text to 'message'
     document.querySelector("#message").innerHTML = "Ready to play? Click on the top disk!"
     diskSm1.addEventListener('click', diskClick)
-    console.log("this is rod1 at start of game" + rod1)
+    disableRodClick()
 }
 
 gameStart()
-// test gameStart
-// console.log(rod1) 
 
 // get reset button, store in 'resetButton'
 let resetButton = document.querySelector(".reset")
@@ -78,47 +66,47 @@ function enableRodClick() {
     rodObj1.addEventListener('click', rodClick)
     rodObj2.addEventListener('click', rodClick)
     rodObj3.addEventListener('click', rodClick)
-    // stick1.addEventListener('click', rodClick)
-    // stick2.addEventListener('click', rodClick)
-    // stick3.addEventListener('click', rodClick)
 }
 
 function disableRodClick() {
     rodObj1.removeEventListener("click", rodClick)
     rodObj2.removeEventListener("click", rodClick)
     rodObj3.removeEventListener("click", rodClick)
-    // stick1.removeEventListener('click', rodClick)
-    // stick2.removeEventListener('click', rodClick)
-    // stick3.removeEventListener('click', rodClick)
 }
+
+// code for timer here
+let minutes = document.getElementById('minutes')
+let seconds = document.getElementById('seconds')
+let milliseconds = document.getElementById('milliseconds')
+console.log("these should be objects, no? " + minutes + " " + seconds + " " + milliseconds)
+
+console.log(new Date())
+
+
 
 // create logic to check for win
 function checkForWin() {
-    console.log("I'm checking for a winner " + rod3)
     if (rod3.length ===3) {
-        console.log("show state of rod 3 " + rod3)
-        // Add this text to 'message'
         document.querySelector("#message").innerHTML = "Congratulations, you have won the game!  Hit reset to play again!"   
         disableDiskClick()
         disableRodClick()
     }
 }
 
-// putting the wasStackedOn parent ID here
+// will put the wasStackedOn parent ID here
 let rodEval = []
 
-// declare fx for when a disk is clicked
 function diskClick() {
-    // store the current disk's id in 'diskId'
+    // store the current disk's id
     let diskId = event.target.getAttribute("id")
-    // grab the disk element
+    // grab the disk object
     let diskNode = document.getElementById(diskId)
-    // need a var to represent the rod it's stacked on
+    // grab the parent object
     let wasStackedOn = diskNode.parentNode
-    // create var to store the parent id
+    // store the parent id
     let stackedOnId = wasStackedOn.getAttribute("id")
-    // move the clicked disk's id to the inPlay array
 
+    // figure out which array to use in checkIfSmallest based on parent id of clicked disk
     if(stackedOnId == 'rodcol1') {
         checkIfSmallest(rod1)
     } else if (stackedOnId == 'rodcol2') {
@@ -127,8 +115,9 @@ function diskClick() {
         checkIfSmallest(rod3)
     }
 
+
     function checkIfSmallest(rodNum){
-        console.log("rod array when checking for legal click " + rodNum)
+        // if the current disk is larger than the disk already stored in the corresponding rod array
         if (diskId > rodNum[1]) {
             document.querySelector("#message").innerHTML = "Illegal move, please try again"
         } else {
@@ -137,31 +126,30 @@ function diskClick() {
     }
 
     function restOfFunction() {
+        // add the current diskId to disksInPlay array
         disksInPlay.push(diskId)
-        // make the rod it was stacked on' id global
+        // make the parent of the clicked disk's id global
         rodEval.push(stackedOnId)
-        // Add this text to 'message'
         document.querySelector("#message").innerHTML = "Where would you like to move your disk? Click on the rod"
         enableRodClick()
         disableDiskClick()
     }
 }
 
-
 function rodClick() {
-    // store the clicked rod's id in 'rodId'
+    // store the clicked sticks's id 
     let rodId = event.target.getAttribute("id")
     // find the array that corresponds with the clicked rod
-    if(rodId == 'rodcol1') {
-        // run check below, using rod1
+    console.log("should be event target " + event.currentTarget + "also, rodClick fx has run")
+    if(rodId == 'stick1') {
+        // grab the corresponding parent obj 
         let parent1 = document.querySelector('#rodcol1')
+        // use the corresponding rod array and parent obj in the check fx below
         check(rod1,parent1)
-    } else if (rodId == 'rodcol2') {
-        // run check below, using rod2
+    } else if (rodId == 'stick2') {
         let parent2 = document.querySelector('#rodcol2')
         check(rod2,parent2)
-    } else if (rodId == 'rodcol3') {
-        // run check below, using rod3
+    } else if (rodId == 'stick3') {
         let parent3 = document.querySelector('#rodcol3')
         check(rod3,parent3)
     }
@@ -171,346 +159,66 @@ function rodClick() {
         if (rodx.length < 1) { 
             // push first item of disksInPlay to the selected rod array
             rodx.push(disksInPlay[0])
-
-            console.log("this is disksInPlay[0]" + disksInPlay)
+            // store the first item of the disksInPlay array
             let currentDiskObj = document.getElementById(disksInPlay[0])
             console.log("this is the currentDisk Obj, is node? " + currentDiskObj)
-            
-            // moves the disk to the correct column
+            // move the current disk to the correct column
             parent.appendChild(currentDiskObj)
-            // removes the disk from its prior array
-            console.log("this is rodEval right now " + rodEval)
-            if(rodEval == 'rodcol1') {
+            // remove the disk from its prior array
+            if(rodEval == 'stick1') {
                 // remove last disk from rod1 array
                 rod1.pop()
                 rodEval.length = 0
-            } else if (rodEval == 'rodcol2') {
+            } else if (rodEval == 'stick2') {
                 rod2.pop()
                 rodEval.length = 0
-            } else if (rodEval == 'rodcol3') {
+            } else if (rodEval == 'stick3') {
                 rod3.pop()   
                 rodEval.length = 0
             }
             
             document.querySelector("#message").innerHTML = "Click on the next disk to move!"
-            // clear disksinPlay
             disksInPlay.length = 0
-            // enable diskclick
             enableDiskClick()
             disableRodClick()
-        // otherwise, 
         } else {
-            // make a copy of the last number of the selected rod array, then
+            // make a copy of the last member of the selected rod array, then
             let copyOfLast = rodx[((rodx.length)-1)]
-            
             // push that copy to disksInPlay, then
             disksInPlay.push(copyOfLast)
-            
-            // is move legal? if so,
+            // is move legal? 
+            // if the first item of disksInPlay array is < the second item,
             if (disksInPlay[0] < disksInPlay[1]) {
-                // push the disk from firstClick to the rod array selected in secondClick, then
-                
+                // push the first disk from disksInPlay to the corresponding rod array
                 rodx.push(disksInPlay[0])
-                // move the disk to the rod
+                // grab the diskInPlay object
                 let smallerDisk = document.getElementById(disksInPlay[0])
-                // parent.insertBefore(smallerDisk, parent.childNodes[0])
+                // move the disk to the rod
                 parent.appendChild(smallerDisk)
-                // removes the disk from its prior array
-                console.log("this is rodEval right now " + rodEval)
-                if(rodEval == 'rodcol1') {
-                    // remove last disk from rod1 array
+                // remove the disk from its prior array
+                if(rodEval == 'stick1') {
+                    // remove last disk from the corresponding rod array
                     rod1.pop()
                     rodEval.length = 0
-                    
-                } else if (rodEval == 'rodcol2') {
+                } else if (rodEval == 'stick2') {
                     rod2.pop()
                     rodEval.length = 0
-                   
-                } else if (rodEval == 'rodcol3') {
+                } else if (rodEval == 'stick3') {
                     rod3.pop()
                     rodEval.length = 0
-                    
                 }
                 document.querySelector("#message").innerHTML = "Click on the next disk to move!"
-                // clear disksInPlay
-                disksInPlay = []
-                // put eventlistener for firstclick back
+                disksInPlay.length = 0
                 enableDiskClick()
                 disableRodClick()
-                // check for a win
                 checkForWin()
             } else {
-                // Add this text to 'message'
                 document.querySelector("#message").innerHTML = "Illegal move, please try again"
-                // remove last item from disksInPlay
-                disksInPlay=[]
-                // clear rodEval
-                rodEval = []
+                disksInPlay.length = 0
+                rodEval.length = 0
                 enableDiskClick()
-            }
-            
+            } 
         }
     console.log("end of turn rod1, rod2, rod3 " + rod1 + " " + rod2 + " " + rod3)    
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Create rod arrays
-// let rod1 = []
-// let rod2 = []
-// let rod3 = []
-
-// // grab disks and store in variables
-// const diskSm1 = document.querySelector('#a')
-// const diskMd2 = document.querySelector('#b')
-// const diskLg3 = document.querySelector('#c')
-
-// // grab disk ids
-// const diskId1 = diskSm1.getAttribute("id")
-// const diskId2 = diskMd2.getAttribute("id")
-// const diskId3 = diskLg3.getAttribute("id")
-
-// // grab rods and store in variables
-// const rodObj1 = document.querySelector('#rod-1')
-// const rodObj2 = document.querySelector('#rod-2')
-// const rodObj3 = document.querySelector('#rod-3')
-
-// // array for disks in play
-// let disksInPlay = []
-
-// // function to start or restart the game
-// let gameStart = () => {
-//     rod1.length = 0
-//     rod2.length = 0
-//     rod3.length = 0
-//     rod1.push(diskId3, diskId2, diskId1)
-//     // position the disks in rodcol1
-//     let startParent = document.getElementById('#rod-1')
-//     startParent.appendChild(diskLg3)
-//     startParent.appendChild(diskMd2)
-//     startParent.appendChild(diskSm1)
-//     // startParent.insertBefore(diskLg3, startParent.childNodes[0])
-//     // startParent.insertBefore(diskMd2, startParent.childNodes[0])
-//     // startParent.insertBefore(diskSm1, startParent.childNodes[0])
-    
-//     disksInPlay.length = 0
-//     rod2.length = 0
-//     rod3.length = 0
-//     // Add this text to 'message'
-//     document.querySelector("#message").innerHTML = "Ready to play? Click on the top disk!"
-//     diskSm1.addEventListener('click', diskClick)
-//     console.log("this is rod1 at start of game" + rod1)
-// }
-
-// gameStart()
-// // test gameStart
-// // console.log(rod1) 
-
-// // get reset button, store in 'resetButton'
-// let resetButton = document.querySelector(".reset")
-// // add the gameStart fx to the reset button
-// resetButton.addEventListener("click", gameStart)
-
-// // add listener clicks to the disks, execute diskClick fx
-// function enableDiskClick() {
-//     diskSm1.addEventListener('click', diskClick)
-//     diskMd2.addEventListener('click', diskClick)
-//     diskLg3.addEventListener('click', diskClick)
-// }
-
-// // declare fx to disable the disk clicks
-// function disableDiskClick() {
-//     diskSm1.removeEventListener("click", diskClick)
-//     diskMd2.removeEventListener("click", diskClick)
-//     diskLg3.removeEventListener("click", diskClick)
-// }
-
-// // add listen for click to the rods, execute 2nd click fx
-// function enableRodClick() {
-//     rodObj1.addEventListener('click', rodClick)
-//     rodObj2.addEventListener('click', rodClick)
-//     rodObj3.addEventListener('click', rodClick)
-// }
-
-// function disableRodClick() {
-//     rodObj1.removeEventListener("click", rodClick)
-//     rodObj2.removeEventListener("click", rodClick)
-//     rodObj3.removeEventListener("click", rodClick)
-// }
-
-// // create logic to check for win
-// function checkForWin() {
-//     console.log("I'm checking for a winner " + rod3)
-//     if (rod3.length ===3) {
-//         console.log("show state of rod 3 " + rod3)
-//         // Add this text to 'message'
-//         document.querySelector("#message").innerHTML = "Congratulations, you have won the game!  Hit reset to play again!"   
-//         disableDiskClick()
-//         disableRodClick()
-//     }
-// }
-
-// // putting the wasStackedOn parent ID here
-// let rodEval = []
-
-// // declare fx for when a disk is clicked
-// function diskClick() {
-//     // store the current disk's id in 'diskId'
-//     let diskId = event.target.getAttribute("id")
-//     // grab the disk element
-//     let diskNode = document.getElementById(diskId)
-//     // need a var to represent the rod it's stacked on
-//     let wasStackedOn = diskNode.parentNode
-//     // create var to store the parent id
-//     let stackedOnId = wasStackedOn.getAttribute("id")
-//     // move the clicked disk's id to the inPlay array
-
-//     if(stackedOnId == 'rod-1') {
-//         checkIfSmallest(rod1)
-//     } else if (stackedOnId == 'rod-2') {
-//         checkIfSmallest(rod2)
-//     } else if (stackedOnId == 'rod-3') {
-//         checkIfSmallest(rod3)
-//     }
-
-//     function checkIfSmallest(rodNum){
-//         console.log("rod array when checking for legal click " + rodNum)
-//         if (diskId > rodNum[1]) {
-//             document.querySelector("#message").innerHTML = "Illegal move, please try again"
-//         } else {
-//             restOfFunction()
-//         }  
-//     }
-
-//     function restOfFunction() {
-//         disksInPlay.push(diskId)
-//         // make the rod it was stacked on' id global
-//         rodEval.push(stackedOnId)
-//         // Add this text to 'message'
-//         document.querySelector("#message").innerHTML = "Where would you like to move your disk? Click on the rod"
-//         enableRodClick()
-//         disableDiskClick()
-//     }
-// }
-
-
-// function rodClick() {
-//     // store the clicked rod's id in 'rodId'
-//     let rodId = event.target.getAttribute("id")
-//     // find the array that corresponds with the clicked rod
-//     if(rodId == 'rod-1') {
-//         // run check below, using rod1
-//         let parent1 = document.querySelector('#rod-1')
-//         check(rod1,parent1)
-//     } else if (rodId == 'rod-2') {
-//         // run check below, using rod2
-//         let parent2 = document.querySelector('#rod-2')
-//         check(rod2,parent2)
-//     } else if (rodId == 'rod-3') {
-//         // run check below, using rod3
-//         let parent3 = document.querySelector('#rod-3')
-//         check(rod3,parent3)
-//     }
-       
-//     function check(rodx, parent) {
-//     // if the current rod array is empty, 
-//         if (rodx.length < 1) { 
-//             // push first item of disksInPlay to the selected rod array
-//             rodx.push(disksInPlay[0])
-// // this isn't working
-//             console.log("this is disksInPlay[0]" + disksInPlay)
-//             let currentDiskObj = document.getElementById(disksInPlay[0])
-//             console.log("this is the currentDisk Obj, is node? " + currentDiskObj)
-            
-//             // moves the disk to the correct column
-//             // parent.insertBefore(currentDiskObj, parent.childNodes[0])
-//             parent.appendChild(currentDiskObj)
-//             // removes the disk from its prior array
-//             console.log("this is rodEval right now " + rodEval)
-//             if(rodEval == 'rod-1') {
-//                 // remove last disk from rod1 array
-//                 rod1.pop()
-//                 rodEval.length = 0
-//             } else if (rodEval == 'rod-2') {
-//                 rod2.pop()
-//                 rodEval.length = 0
-//             } else if (rodEval == 'rod-3') {
-//                 rod3.pop()   
-//                 rodEval.length = 0
-//             }
-            
-//             document.querySelector("#message").innerHTML = "Click on the next disk to move!"
-//             // clear disksinPlay
-//             disksInPlay.length = 0
-//             // enable diskclick
-//             enableDiskClick()
-//             disableRodClick()
-//         // otherwise, 
-//         } else {
-//             // make a copy of the last number of the selected rod array, then
-//             let copyOfLast = rodx[((rodx.length)-1)]
-            
-//             // push that copy to disksInPlay, then
-//             disksInPlay.push(copyOfLast)
-            
-//             // is move legal? if so,
-//             if (disksInPlay[0] < disksInPlay[1]) {
-//                 // push the disk from firstClick to the rod array selected in secondClick, then
-                
-//                 rodx.push(disksInPlay[0])
-//                 // move the disk to the rod
-//                 let smallerDisk = document.getElementById(disksInPlay[0])
-//                 // parent.insertBefore(smallerDisk, parent.childNodes[0])
-//                 parent.appendChild(smallerDisk)
-//                 // removes the disk from its prior array
-//                 console.log("this is rodEval right now " + rodEval)
-//                 if(rodEval == 'rod-1') {
-//                     // remove last disk from rod1 array
-//                     rod1.pop()
-//                     rodEval.length = 0
-                    
-//                 } else if (rodEval == 'rod-2') {
-//                     rod2.pop()
-//                     rodEval.length = 0
-                   
-//                 } else if (rodEval == 'rod-3') {
-//                     rod3.pop()
-//                     rodEval.length = 0
-                    
-//                 }
-//                 document.querySelector("#message").innerHTML = "Click on the next disk to move!"
-//                 // clear disksInPlay
-//                 disksInPlay = []
-//                 // put eventlistener for firstclick back
-//                 enableDiskClick()
-//                 disableRodClick()
-//                 // check for a win
-//                 checkForWin()
-//             } else {
-//                 // Add this text to 'message'
-//                 document.querySelector("#message").innerHTML = "Illegal move, please try again"
-//                 // remove last item from disksInPlay
-//                 disksInPlay=[]
-//                 // clear rodEval
-//                 rodEval = []
-//                 enableDiskClick()
-//             }
-            
-//         }
-//     console.log("end of turn rod1, rod2, rod3 " + rod1 + " " + rod2 + " " + rod3)    
-//     }
-// }
