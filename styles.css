@@ -68,10 +68,13 @@ body {
 
 h1 {
     text-align: center;
+    margin-top: 80px;
 }
 
 h2 {
     text-align: center;
+    margin-bottom: 60px;
+    margin-top: 60px;
 }
 
 .reset {
@@ -81,10 +84,14 @@ h2 {
 }
 
 button {
-    height: 40px;
+    height: 50px;
     width: 100px;
     border-radius: 15px;
-    color: rgb(221,105,87);
+    background: rgb(204,255,230);
+    text-transform: uppercase;
+    font-family: 'Proza Libre', sans-serif;
+    font-size: 20px;
+    outline: none;
 }
 
 .win {
