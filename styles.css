@@ -9,7 +9,7 @@ body {
     flex-wrap: nowrap;
     height: 300px;
     justify-content: center;
-    z-index: 1000;
+    /* z-index: 500; */
 }
 
 .rodcol {
@@ -20,7 +20,7 @@ body {
     flex-direction: column-reverse;
     justify-content: flex-start;
     align-items: center;
-    z-index: 500;
+    z-index: 5000;
 }
 
 .rods {
