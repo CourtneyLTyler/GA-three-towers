@@ -1,10 +1,12 @@
+body {
+    font-family: 'Proza Libre', sans-serif;
+    background-color: rgb(255,153,91);
+}
+
 .contain-the-rodcols {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    background-color: rgb(235,111,91);
-    background-color: rgb(255,153,91);
-    border: solid;
     height: 300px;
     justify-content: center;
     z-index: 1000;
@@ -62,4 +64,29 @@
     width: 60px;
     background: rgb(117,34,82);
     background-image: radial-gradient(rgb(255,102,255),rgb(117,34,82));
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+.reset {
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    height: 40px;
+    width: 100px;
+    border-radius: 15px;
+    color: rgb(221,105,87);
+}
+
+.win {
+    text-align: center;
 }
