@@ -161,18 +161,17 @@ function rodClick() {
             rodx.push(disksInPlay[0])
             // store the first item of the disksInPlay array
             let currentDiskObj = document.getElementById(disksInPlay[0])
-            console.log("this is the currentDisk Obj, is node? " + currentDiskObj)
             // move the current disk to the correct column
             parent.appendChild(currentDiskObj)
             // remove the disk from its prior array
-            if(rodEval == 'stick1') {
+            if(rodEval == 'rodcol1') {
                 // remove last disk from rod1 array
                 rod1.pop()
                 rodEval.length = 0
-            } else if (rodEval == 'stick2') {
+            } else if (rodEval == 'rodcol2') {
                 rod2.pop()
                 rodEval.length = 0
-            } else if (rodEval == 'stick3') {
+            } else if (rodEval == 'rodcol3') {
                 rod3.pop()   
                 rodEval.length = 0
             }
@@ -196,14 +195,14 @@ function rodClick() {
                 // move the disk to the rod
                 parent.appendChild(smallerDisk)
                 // remove the disk from its prior array
-                if(rodEval == 'stick1') {
+                if(rodEval == 'rodcol1') {
                     // remove last disk from the corresponding rod array
                     rod1.pop()
                     rodEval.length = 0
-                } else if (rodEval == 'stick2') {
+                } else if (rodEval == 'rodcol2') {
                     rod2.pop()
                     rodEval.length = 0
-                } else if (rodEval == 'stick3') {
+                } else if (rodEval == 'rodcol3') {
                     rod3.pop()
                     rodEval.length = 0
                 }
