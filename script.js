@@ -29,9 +29,12 @@ let gameStart = () => {
     rod1.push(diskId3, diskId2, diskId1)
     // position the disks in rodcol1
     let startParent = document.getElementById('rodcol1')
-    startParent.insertBefore(diskLg3, startParent.childNodes[0])
-    startParent.insertBefore(diskMd2, startParent.childNodes[0])
-    startParent.insertBefore(diskSm1, startParent.childNodes[0])
+    startParent.appendChild(diskLg3)
+    startParent.appendChild(diskMd2)
+    startParent.appendChild(diskSm1)
+    // startParent.insertBefore(diskLg3, startParent.childNodes[0])
+    // startParent.insertBefore(diskMd2, startParent.childNodes[0])
+    // startParent.insertBefore(diskSm1, startParent.childNodes[0])
     
     disksInPlay.length = 0
     rod2.length = 0
@@ -173,8 +176,8 @@ function rodClick() {
             console.log("this is the currentDisk Obj, is node? " + currentDiskObj)
             
             // moves the disk to the correct column
-            parent.insertBefore(currentDiskObj, parent.childNodes[0])
-
+            // parent.insertBefore(currentDiskObj, parent.childNodes[0])
+            parent.appendChild(currentDiskObj)
             // removes the disk from its prior array
             console.log("this is rodEval right now " + rodEval)
             if(rodEval == 'rodcol1') {
@@ -210,7 +213,8 @@ function rodClick() {
                 rodx.push(disksInPlay[0])
                 // move the disk to the rod
                 let smallerDisk = document.getElementById(disksInPlay[0])
-                parent.insertBefore(smallerDisk, parent.childNodes[0])
+                // parent.insertBefore(smallerDisk, parent.childNodes[0])
+                parent.appendChild(smallerDisk)
                 // removes the disk from its prior array
                 console.log("this is rodEval right now " + rodEval)
                 if(rodEval == 'rodcol1') {

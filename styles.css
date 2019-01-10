@@ -1,5 +1,14 @@
+.contain-the-rodcols {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background-color: pink;
+    border: solid;
+}
+
 .rods {
     border: solid; 
+    background: lightskyblue;
     /* width: 50px;
     display: inline-block;
     margin: 10px; */
@@ -8,7 +17,10 @@
 .rodcol {
     width: 60px;
     margin: 10px;
-    display: inline-block;
+    /* display: inline-block; */
+    display: flex;
+    flex-direction: column-reverse;
+    background: lightgray;
 }
 
 .disk {
@@ -25,4 +37,8 @@
 
 #a {
     width: 20px;
+}
+
+.rodcol1 {
+    margin-left: 
 }
