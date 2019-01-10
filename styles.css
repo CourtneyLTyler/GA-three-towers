@@ -78,7 +78,8 @@ h2 {
 }
 
 .reset {
-    margin: 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
 }
@@ -96,4 +97,10 @@ button {
 
 .win {
     text-align: center;
+}
+
+.contain-timer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
