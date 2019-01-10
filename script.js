@@ -77,12 +77,19 @@ function disableRodClick() {
 // code for timer here
 let minutes = document.getElementById('minutes')
 let seconds = document.getElementById('seconds')
-let milliseconds = document.getElementById('milliseconds')
-console.log("these should be objects, no? " + minutes + " " + seconds + " " + milliseconds)
+console.log("these should be objects, no? " + minutes + " " + seconds)
 
 console.log(new Date())
 
-
+// set up timer code structure
+let deployTimer = setInterval(timerGo, 1000) 
+function timerGo() {
+    // code to make timer go
+}
+// put clearInterval in winner fx
+function stopTimer() {
+    clearInterval(deployTimer)
+}
 
 // create logic to check for win
 function checkForWin() {
