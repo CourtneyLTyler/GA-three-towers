@@ -4,23 +4,27 @@
     flex-wrap: nowrap;
     background-color: pink;
     border: solid;
+    height: 300px;
+    justify-content: center;
+}
+
+.rodcol {
+    width: 120px;
+    margin: 20px;
+    /* display: inline-block; */
+    display: flex;
+    flex-direction: column-reverse;
+    background: lightgray;
+    align-items: center;
 }
 
 .rods {
     border: solid; 
     background: lightskyblue;
+    width: 90px;
     /* width: 50px;
     display: inline-block;
     margin: 10px; */
-}
-
-.rodcol {
-    width: 60px;
-    margin: 10px;
-    /* display: inline-block; */
-    display: flex;
-    flex-direction: column-reverse;
-    background: lightgray;
 }
 
 .disk {
@@ -28,15 +32,15 @@
 }
 
 #c {
-    width: 45px;
+    width: 80px;
 }
 
 #b {
-    width: 30px;
+    width: 60px;
 }
 
 #a {
-    width: 20px;
+    width: 40px;
 }
 
 .rodcol1 {
