@@ -128,51 +128,38 @@ function startWatch() {
     if (seconds === 60) { 
         seconds = 0 
         minutes = minutes + 1
-        console.log("a minute passed")
     } 
     // if there are <10 minutes, display a zero before the minute 
     if (mins = (minutes<10)) {
         mins = '0'+ minutes + ':'
-        console.log("minutes are <10 " + mins)
     } else {
         mins = minutes + ':'
-        console.log("minute are >10 " + mins)
     }
     //  if minutes is 60, add 1 to hours and reset minutes
     if (minutes === 60) { 
         minutes = 0 
         hours = hours + 1 
-        console.log("it's been an hour")
     } 
     // if hours is <10, display a zero before the hour
     if (gethours = (hours<10)) {
         gethours = '0' + hours + ':'
-        console.log("hours <10 " + gethours)
     } else {
         gethours = hours + ':'
     }
 
     if (secs = (seconds<10)) {
         secs = '0' + seconds
-        console.log("secs <10 " + secs)
     } else {
         secs = seconds
     }
 
-    // fulltime.style.display = "block"
-    // let time = gethours + mins + secs
-    // fulltime.innerHTML = 'Your time: ' + time
-
-    // display the stopwatch 
-        // let stoppedTime = gethours + mins + secs; 
-        // gameTimerObj.innerHTML = stoppedTime 
     let displayTheDamnTimer = gethours + mins + secs
     gameTimerObj.innerHTML = displayTheDamnTimer
     // start adding to seconds
     seconds++ 
-    console.log("seconds are adding")
     // setTimeout keeps it going and calls it every second
-    let clearTime = setTimeout('startWatch()', 1000)
+    let clearTime = setTimeout(startWatch, 1000)
+    console.log(clearTime)
 } 
 
 function startTime() { 
@@ -203,13 +190,15 @@ function stopTime() {
         mins = '0' + minutes + ': ' 
         gethours = '0' + hours + ': '
          /* display the stopwatch after it's been stopped */ 
-        // var x = document.getElementById ("timer"); 
+        var x = document.getElementById ("gameTimer"); 
         // let stoppedTime = gethours + mins + secs; 
         // gameTimerObj.innerHTML = stoppedTime 
+        var stopTime = gethours + mins + secs; 
+        x.innerHTML = stopTime
         // show start button
         startBtn.style.display = "inline-block" 
          /* clear the stop watch using the setTimeout( ) return value 'clearTime' as ID */ 
-        clearTimeout(clearTime)
+        clearTimeout(clearTime)    
 } 
 
 
