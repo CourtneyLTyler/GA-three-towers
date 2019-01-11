@@ -17,6 +17,7 @@ const rodObj1 = document.querySelector('#stick1')
 const rodObj2 = document.querySelector('#stick2')
 const rodObj3 = document.querySelector('#stick3')
 
+// to place diskIds during each turn
 let disksInPlay = []
 
 let gameStart = () => {
@@ -107,8 +108,8 @@ function diskClick() {
     }
 
     function checkIfSmallest(rodNum){
-        // if the current disk is larger than the disk already stored in the corresponding rod array
-        if (diskId > rodNum[1]) {
+        // if the disk is larger than the top disk
+        if (diskId > rodNum[0]) {
             document.querySelector("#message").innerHTML = "Illegal move, please try again"
         } else {
             restOfFunction()
