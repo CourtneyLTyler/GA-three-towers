@@ -6,8 +6,12 @@ This project is a coding challenge to render the Towers of Hanoi game.  This gam
 Creating this project involved solving many coding challenges, the main of which was laying out the full logic for a game from scratch and ensuring that it executes.
 ## Brief Example
 Below is an example of the game setup code
+
+
 ![snippet of gameboard setup code](codesnipsmall.png?raw=true)
 Below is an example of the game setup rendered in the browser
+
+
 ![snippet of rendered gameboard](rendersnipsmall.png?raw=true)
 ## Features
 ### Bronze - Completed
