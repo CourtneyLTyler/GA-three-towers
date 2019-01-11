@@ -10,19 +10,22 @@ Below is an example of the game setup code
 Below is an example of the game setup rendered in the browser
 ![snippet of rendered gameboard](rendersnip.png?raw=true)
 ## Features
-### Bronze
+### Bronze - Completed
 Game board is set up correctly
 Disks move to towers as indicated
 Follows rules
 Does not allow illegal moves
 Announces winner at appropriate point and stops game
-### Silver
+
+### Silver - Completed
 Appropriate visual representation of how the game might look in AR
 Does not run functions out of order (diskClick cannot run when it's rodClick's turn to run)
 Reset button that returns the gameboard to its original state and clears in-play arrays
-### Gold
+### Gold - Attempted
 Timer that runs following a user click
 Timer that stops following user win and renders the stopped time
+Scoring based on user time
+
 ## List of Technologies Used
 HTML
 CSS
