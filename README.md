@@ -9,6 +9,8 @@ Below is an example of the game setup code
 
 
 ![snippet of gameboard setup code](codesnipsmall.png?raw=true)
+
+
 Below is an example of the game setup rendered in the browser
 
 
