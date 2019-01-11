@@ -110,7 +110,7 @@ function diskClick() {
         disksInPlay.push(diskId)
         // push the parent of the clicked disk's id to rodEval to make it global
         rodEval.push(stackedOnId)
-        document.querySelector("#message").innerHTML = "Where would you like to move your disk? Click on the rod"
+        document.querySelector("#message").innerHTML = "Where would you like to move your disk? Click on the tower"
         enableRodClick()
         disableDiskClick()
     }
