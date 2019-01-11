@@ -92,14 +92,12 @@ let mins = '0' + minutes + ':'
 console.log("this should be mins " + mins)
 let gethours = '0' + hours + ':'
 console.log("this should be hours " + gethours)
-let fulltime = document.getElementById('fulltime')
-console.log("should be obj " + fulltime)
 let gameTimerObj = document.getElementById("gameTimer") 
 console.log("should be obj " + gameTimerObj)
 let startBtn = document.getElementById('start-timer')
 console.log("should be obj " + startBtn)
 startBtn.addEventListener('click', startTime)
-// gameTimerObj.innerHTML = gethours + mins + secs
+gameTimerObj.innerHTML = gethours + mins + secs
 
 let stopBtn = document.getElementById('stop-timer')
 stopBtn.addEventListener('click', stopTime)
@@ -157,8 +155,9 @@ function startWatch() {
     } else {
         secs = seconds
     } 
-    let displayTheDamnTimer = gethours + mins + secs
-    gameTimerObj.innerHTML = displayTheDamnTimer
+    
+    // let gameTimerObj = document.getElementById("gameTimer") 
+    gameTimerObj.innerHTML = gethours + mins + secs
     // start adding to seconds
     seconds++ 
     // setTimeout keeps it going and calls it every second
@@ -168,14 +167,18 @@ function startWatch() {
 
 
 function startTime() { 
-    // hide fulltime while timer is running
-    fulltime.style.display = "block" 
+    // let fulltime = document.getElementById('fulltime')
+    // // hide fulltime while timer is running
+    // fulltime.style.display = "block" 
     // hide start button while timer is running
     this.style.display = "none" 
     // make it go
     startWatch() 
 }
 
+function myStopFunction() {
+    clearInterval(interval);
+}
   
 // let clearTime = setTimeout(startTime, 1000);
 
@@ -188,7 +191,8 @@ function startTime() {
 //create a function to stop the time 
 function stopTime() { 
     //display the full time 
-    fulltime.style.display = "block"
+    // fulltime.style.display = "block"
+    let fulltime = document.getElementById('fulltime')
     let time = gethours + mins + secs
     fulltime.innerHTML = 'Your time: ' + time
     // reset the timer
@@ -199,16 +203,15 @@ function stopTime() {
     // mins = '0' + minutes + ': ' 
     // gethours = '0' + hours + ': '
     /* display the stopwatch after it's been stopped */ 
-    let stoppedTime = document.getElementById ("gameTimer"); 
-    // let stoppedTime = gethours + mins + secs; 
-    // gameTimerObj.innerHTML = stoppedTime 
-    let stopTime = gethours + mins + secs; 
-    stoppedTime.innerHTML = stopTime
+    // let stoppedTime = document.getElementById ("gameTimer"); 
+    // // let stoppedTime = gethours + mins + secs; 
+    // // gameTimerObj.innerHTML = stoppedTime 
+    // let stopTime = gethours + mins + secs; 
+    // stoppedTime.innerHTML = stopTime
     // show start button
     startBtn.style.display = "inline-block" 
-    /* clear the stop watch using the setTimeout() return value 'clearTime' as ID */ 
-    // clearTimeout(clearTime)    
-    clearInterval(interval)
+    // this should stop the interval from running
+    myStopFunction()
 } 
 
 // create logic to check for win
