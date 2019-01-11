@@ -185,7 +185,7 @@ function checkForWin() {
         document.querySelector("#message").innerHTML = "Congratulations, you have won the game!  Hit reset to play again!"   
         disableDiskClick()
         disableRodClick()
-        stopTime()
+        // stopTime()
     }
 }
 
