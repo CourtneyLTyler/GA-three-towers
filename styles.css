@@ -141,3 +141,11 @@ img {
 .message {
     margin-top: 50px;
 }
+
+.reset {
+    margin-bottom: 50px;
+}
+
+.contain-timer {
+    text-align: center;
+}
