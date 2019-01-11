@@ -79,35 +79,8 @@ function disableRodClick() {
 //     event.stopPropagation();
 //  });
 
-// code for timer here
-// let minutes = document.getElementById('minutes')
-// let seconds = document.getElementById('seconds')
-// console.log("these should be objects, no? " + minutes + " " + seconds)
-
-// console.log(new Date())
-
-// // set up timer code structure
-// let deployTimer = setInterval(timerGo, 1000) 
-// function timerGo() {
-//     // code to make timer go
-// }
-// // put clearInterval in winner fx
-// function stopTimer() {
-//     clearInterval(deployTimer)
-// }
-
-// ORRRR?
-
-// let setTime = setTimeout("fxName()", 1000)
-
-// let clear
-// function stopWatch( ) { 
-//     // javascript statement here
-//     clear = setTimeout( "stopWatch( )", 1000 ); 
-// } 
-
 // make variables global
-let count = 0 
+// let count = 0 
 let clearTime
 let seconds = 0 
 let minutes = 0 
@@ -116,37 +89,46 @@ let hours = 0
 let secs = '0' + seconds 
 console.log("this should be secs " + secs)
 let mins = '0' + minutes + ':' 
+console.log("this should be mins " + mins)
 let gethours = '0' + hours + ':'
+console.log("this should be hours " + gethours)
 let fulltime = document.getElementById('fulltime')
 console.log("should be obj " + fulltime)
 let gameTimerObj = document.getElementById("gameTimer") 
 console.log("should be obj " + gameTimerObj)
 let startBtn = document.getElementById('start-timer')
 console.log("should be obj " + startBtn)
+startBtn.addEventListener('click', startTime)
 // gameTimerObj.innerHTML = gethours + mins + secs
 
-startBtn.addEventListener('click', startTime)
+let stopBtn = document.getElementById('stop-timer')
+stopBtn.addEventListener('click', stopTime)
 
 
-//display the full time 
-fulltime.style.display = "block"
-let time = gethours + mins + secs
-fulltime.innerHTML = 'Your time: ' + time
-// reset the timer
-seconds = 0
-minutes = 0 
-hours = 0 
-secs = '0' + seconds 
-mins = '0' + minutes + ': ' 
-gethours = '0' + hours + ': '
+// //display the full time 
+// fulltime.style.display = "block"
+// let time = gethours + mins + secs
+// fulltime.innerHTML = 'Your time: ' + time
+// // reset the timer
+// seconds = 0
+// minutes = 0 
+// hours = 0 
+// secs = '0' + seconds 
+// mins = '0' + minutes + ': ' 
+// gethours = '0' + hours + ': '
 
 
 function startWatch() { 
+        // let stoppedTime = gethours + mins + secs; 
+        // gameTimerObj.innerHTML = stoppedTime 
     // gameTimerObj.innerHTML = gethours + mins + secs
+    // let displayTheDamnTimer = 'this should display' + gethours + mins + secs
+    // gameTimerObj.innerHTML = 'display the damn timer already ' + displayTheDamnTimer
     // if seconds is 60 add 1 to minutes, and reset seconds
     if (seconds === 60) { 
         seconds = 0 
         minutes = minutes + 1
+        console.log("a minute passed")
     } 
     // if there are <10 minutes, display a zero before the minute 
     if (mins = (minutes<10)) {
@@ -154,11 +136,13 @@ function startWatch() {
         console.log("minutes are <10 " + mins)
     } else {
         mins = minutes + ':'
+        console.log("minute are >10 " + mins)
     }
     //  if minutes is 60, add 1 to hours and reset minutes
     if (minutes === 60) { 
         minutes = 0 
         hours = hours + 1 
+        console.log("it's been an hour")
     } 
     // if hours is <10, display a zero before the hour
     if (gethours = (hours<10)) {
@@ -180,28 +164,31 @@ function startWatch() {
     // fulltime.innerHTML = 'Your time: ' + time
 
     // display the stopwatch 
-    let displayTheDamnTimer = 'this should display' + gethours + mins + secs
+        // let stoppedTime = gethours + mins + secs; 
+        // gameTimerObj.innerHTML = stoppedTime 
+    let displayTheDamnTimer = gethours + mins + secs
     gameTimerObj.innerHTML = displayTheDamnTimer
     // start adding to seconds
     seconds++ 
+    console.log("seconds are adding")
     // setTimeout keeps it going and calls it every second
     let clearTime = setTimeout('startWatch()', 1000)
 } 
 
 function startTime() { 
     // if all are set to zero, run the code
-    if (seconds === 0 && minutes === 0 && hours === 0) { 
+    // if (seconds === 0 && minutes === 0 && hours === 0) { 
         // hide fulltime while timer is running
-        fulltime.style.display = "none" 
+        fulltime.style.display = "block" 
         // hide start button while timer is running
         this.style.display = "none" 
         // make it go
         startWatch() 
-    } 
+    // } 
 }
 
 //create a function to stop the time 
-function stopTime( ) { 
+function stopTime() { 
     /* check if seconds, minutes and hours are not equal to 0 */ 
     // if ( seconds !== 0 || minutes !== 0 || hours !== 0 ) { 
         //display the full time 
@@ -217,13 +204,13 @@ function stopTime( ) {
         gethours = '0' + hours + ': '
          /* display the stopwatch after it's been stopped */ 
         // var x = document.getElementById ("timer"); 
-        let stoppedTime = gethours + mins + secs; 
-        gameTimerObj.innerHTML = stoppedTime 
+        // let stoppedTime = gethours + mins + secs; 
+        // gameTimerObj.innerHTML = stoppedTime 
         // show start button
         startBtn.style.display = "inline-block" 
          /* clear the stop watch using the setTimeout( ) return value 'clearTime' as ID */ 
         clearTimeout(clearTime)
-    } 
+} 
 
 
 

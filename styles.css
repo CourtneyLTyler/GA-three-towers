@@ -21,8 +21,6 @@ body {
     justify-content: flex-start;
     align-items: center;
     z-index: 1;
-    border: solid;
-    background: pink;
 }
 
 .rods {
@@ -109,6 +107,12 @@ button {
 }
 
 .contain-timer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.contain-stop {
     display: flex;
     justify-content: center;
     margin-top: 20px;
