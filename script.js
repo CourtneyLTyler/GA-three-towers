@@ -210,7 +210,7 @@ function rodClick() {
 
 // code for timer
 
-var timerObj = document.getElementById('timer'),
+let timerObj = document.getElementById('timer'),
     start = document.getElementById('start'),
     stop = document.getElementById('stop'),
     clear = document.getElementById('clear'),
@@ -228,7 +228,6 @@ function add() {
         }
     }
     
-
     timerObj.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 
     timer();
@@ -236,8 +235,6 @@ function add() {
 function timer() {
     t = setTimeout(add, 1000);
 }
-// timer();
-
 
 /* Start button */
 start.onclick = timer

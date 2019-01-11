@@ -9,7 +9,6 @@ body {
     flex-wrap: nowrap;
     height: 300px;
     justify-content: center;
-    /* z-index: 500; */
 }
 
 .rodcol {
@@ -87,8 +86,6 @@ h2 {
 .contain-start {
     margin-top: 10px;
     margin-bottom: 20px;
-    /* display: flex;
-    justify-content: center; */
 }
 
 button {
@@ -102,12 +99,7 @@ button {
     outline: none;
 }
 .contain-rules {
-    /* display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-evenly; */
     text-align: center;
-    /* margin-top: 100px; */
-    margin-bottom: 100px;
 }
 
 .win {
@@ -138,10 +130,6 @@ img {
     margin-left: 80px;
     margin-right: 80px;
 }
-
-/* .message {
-    margin-top: 50px;
-} */
 
 .reset {
     margin-bottom: 50px;
