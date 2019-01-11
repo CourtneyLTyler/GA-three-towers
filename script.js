@@ -40,6 +40,11 @@ gameStart()
 
 let resetButton = document.querySelector(".reset")
 resetButton.addEventListener("click", gameStart)
+resetButton.onclick = function() {
+    timerObj.textContent = "00:00:00";
+    seconds = 0; minutes = 0; hours = 0;
+}
+
 
 // add listener clicks to the disk objects
 function enableDiskClick() {
@@ -71,7 +76,12 @@ function checkForWin() {
         document.querySelector("#message").innerHTML = "Congratulations, you have won the game!  Hit reset to play again!"   
         disableDiskClick()
         disableRodClick()
+        clearTimeout(t)
     }
+}
+
+stop.onclick = function() {
+    clearTimeout(t);
 }
 
 // will put the wasStackedOn parent ID here
