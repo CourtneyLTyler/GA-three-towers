@@ -185,7 +185,7 @@ function startWatch() {
     // start adding to seconds
     seconds++ 
     // setTimeout keeps it going and calls it every second
-    setTimeout(startWatch(), 1000)
+    let clearTime = setTimeout('startWatch()', 1000)
 } 
 
 function startTime() { 
@@ -217,8 +217,8 @@ function stopTime( ) {
         gethours = '0' + hours + ': '
          /* display the stopwatch after it's been stopped */ 
         // var x = document.getElementById ("timer"); 
-        var stopTime = gethours + mins + secs; 
-        gameTimerObj.innerHTML = stopTime 
+        let stoppedTime = gethours + mins + secs; 
+        gameTimerObj.innerHTML = stoppedTime 
         // show start button
         startBtn.style.display = "inline-block" 
          /* clear the stop watch using the setTimeout( ) return value 'clearTime' as ID */ 
