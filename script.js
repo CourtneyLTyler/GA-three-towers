@@ -138,6 +138,14 @@ function startWatch() {
     console.log(clearTime)
 } 
 
+// setTimeout ({
+//     startWatch() 
+//   }, 1000)
+
+//   setTimeout(() => {
+//     startWatch()
+//   }, 1000)
+
 function startTime() { 
     fulltime.style.display = "block" 
     // hide start button while timer is running
