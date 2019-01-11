@@ -13,6 +13,10 @@
 
     <h2 id='message'></h2>
 
+    <div class='contain-start'>
+        <button id='start-timer'>START</button>
+    </div>
+
     <div class='contain-the-rodcols'>
 
         <div class='rodcol' id='rodcol1'>
@@ -42,13 +46,16 @@
     </div>
     <br>
 
-    <div class='contain-timer'>
-        <p id='gametimer'><span id='minutes'>00</span>.<span id='seconds'>00</span></p>
+    <div class='contain-timer' id='timerId'>
+        <!-- 00:00:00 -->
+        <p id='gameTimer'></p>
+        <p id='fulltime'></p>
+        <!-- <span id='minutes'>00</span>.<span id='seconds'>00</span> -->
     </div>
     <br>
 
-    <div class="reset">
-        <button class='reset'>Reset</button>
+    <div class="contain-reset">
+        <button class='reset' id='reset-button'>Reset</button>
     </div>
 
     <p class="win">win strategy: A to C,   A to B,   C to B, REPEAT.</p>
