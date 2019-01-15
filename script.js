@@ -43,6 +43,7 @@ resetButton.addEventListener("click", gameStart)
 resetButton.onclick = function() {
     timerObj.textContent = "00:00:00";
     seconds = 0; minutes = 0; hours = 0;
+    clearTimeout(t);
 }
 
 
@@ -256,4 +257,5 @@ stop.onclick = function() {
 clear.onclick = function() {
     timerObj.textContent = "00:00:00";
     seconds = 0; minutes = 0; hours = 0;
+    clearTimeout(t);
 }
