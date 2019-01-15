@@ -20,13 +20,14 @@ Below is an example of the game setup code
 * Announces winner at appropriate point and stops game
 
 ### Silver - Completed
-* Appropriate visual representation of how the game might look in AR
+* Appropriate visual representation of how the game might look IRL
 * Does not run functions out of order (diskClick cannot run when it's rodClick's turn to run)
 * Reset button that returns the gameboard to its original state and clears in-play arrays
-### Gold - Attempted
 * Timer that runs following a user click
 * Timer that stops following user win and renders the stopped time
+### Gold - Attempted
 * Scoring based on user time
+* Save user scores despite refresh
 
 ## List of Technologies Used
 * HTML
@@ -36,9 +37,6 @@ Below is an example of the game setup code
 * GitHub
 * Terminal
 * VSCode
-
-
-Descriptions of any unsolved problems or major hurdles you had to overcome
 
 ## Hurdles and Ongoing Challenges
 
