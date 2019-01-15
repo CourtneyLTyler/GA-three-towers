@@ -115,7 +115,7 @@ function diskClick() {
 
     function checkIfSmallest(rodNum){
         // if the disk is larger than the top disk
-        if (diskId > rodNum[0]) {
+        if (diskId > rodNum[rodNum.length-1]) {
             document.querySelector("#message").innerHTML = "Illegal move, please try again"
         } else {
             restOfFunction()
