@@ -17,7 +17,6 @@ const rodObj1 = document.querySelector('#stick1')
 const rodObj2 = document.querySelector('#stick2')
 const rodObj3 = document.querySelector('#stick3')
 
-// to place diskIds during each turn
 let disksInPlay = []
 
 let gameStart = () => {
@@ -81,9 +80,7 @@ function checkForWin() {
     }
 }
 
-stop.onclick = function() {
-    clearTimeout(t);
-}
+
 
 // will put the wasStackedOn parent ID here
 let rodEval = []
@@ -107,6 +104,15 @@ function diskClick() {
         checkIfSmallest(rod3)
     }
 
+    // function checkIfSmallest(rodNum){
+    //     // if the current disk is larger than the disk already stored in the corresponding rod array
+    //     if (diskId > rodNum[1]) {
+    //         document.querySelector("#message").innerHTML = "Illegal move, please try again"
+    //     } else {
+    //         restOfFunction()
+    //     }  
+    // }
+
     function checkIfSmallest(rodNum){
         // if the disk is larger than the top disk
         if (diskId > rodNum[0]) {
@@ -115,6 +121,7 @@ function diskClick() {
             restOfFunction()
         }  
     }
+
 
     function restOfFunction() {
         // add the current diskId to disksInPlay array
