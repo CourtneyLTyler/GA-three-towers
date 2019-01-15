@@ -31,7 +31,7 @@ let gameStart = () => {
     disksInPlay.length = 0
     rod2.length = 0
     rod3.length = 0
-    document.querySelector("#message").innerHTML = "Ready to play? Click on the top disk!"
+    document.querySelector("#message").innerHTML = "Ready to play? Click START, then click on the top disk!"
     diskSm1.addEventListener('click', diskClick)
     disableRodClick()
 }

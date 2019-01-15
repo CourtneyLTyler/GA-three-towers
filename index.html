@@ -18,23 +18,27 @@
     
     <div class='rules'>
         <p class='underline'>Please mind the following rules:</p>
-        Only one disk can be moved at a time
-        Every move involves taking the top disk
-        then placing it on top of another stack
-        No disk can be put on top of a smaller disk</p>
+        <ul>
+            <li> Only one disk can be moved at a time</li>
+            <li>Only the top disk can be moved</li>
+            <li>No disk can be placed on top of a smaller disk</li>
+        </ul>
     </div>
-
-    <!-- <img src='300px-Tower_of_Hanoi.jpeg'> -->
 
     <div class='contain-win'>
         <p class='underline'>How do I win?</p>
-        <p>All disks stacked in the third tower in their original order</p><br>
-        <p>To time yourself, press START below</p>
+        <p>Stack all disks in the third tower in their original order</p><br>
     </div>
 
     </div>
     <h2 id='message'></h2>
-
+    
+    <div class='contain-timer'>
+        <h1 id=timer><time>00:00:00</time></h1>
+        <button id="start">start</button>
+        <button id="stop">stop</button>
+        <button id="clear">clear</button>
+    </div>
     <div class='contain-the-rodcols'>
 
         <div class='rodcol' id='rodcol1'>
@@ -67,18 +71,6 @@
         <button class='reset' id='reset-button'>Reset</button>
     </div>
 
-    <div class=intro-timer>
-        <p>For an extra challenge, hit the start button</p>
-        <p>to time yourself!  The timer will stop</p>
-        <p>once you reach the solution</p>
-    </div>
-
-    <div class='contain-timer'>
-        <h1 id=timer><time>00:00:00</time></h1>
-        <button id="start">start</button>
-        <button id="stop">stop</button>
-        <button id="clear">clear</button>
-    </div>
     <script src="script.js"></script>
     <script src="script1.js"></script>
 </body>

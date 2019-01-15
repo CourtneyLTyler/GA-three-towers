@@ -102,6 +102,10 @@ button {
     text-align: center;
 }
 
+.contain-rules ul {
+    list-style: none;
+}
+
 .win {
     text-align: center;
 }
