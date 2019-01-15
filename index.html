@@ -10,12 +10,12 @@
 </head>
 <body>
     <div class='contain-head'>
-        <img class='tower' src='tower.png'>
+        <img class='tower' src='images/tower.png'>
         <h1>Welcome to the Towers of Hanoi!</h1>
-        <img class='tower' src='tower.png'>
+        <img class='tower' src='images/tower.png'>
     </div>
+
     <div class='contain-rules'>
-    
     <div class='rules'>
         <p class='underline'>Please mind the following rules:</p>
         <ul>
@@ -29,8 +29,8 @@
         <p class='underline'>How do I win?</p>
         <p>Stack all disks in the third tower in their original order</p><br>
     </div>
+    </div><!--/contain-rules-->
 
-    </div>
     <h2 id='message'></h2>
     
     <div class='contain-timer'>
@@ -39,33 +39,26 @@
         <button id="stop">stop</button>
         <button id="clear">clear</button>
     </div>
-    <div class='contain-the-rodcols'>
 
-        <div class='rodcol' id='rodcol1'>
-            
+    <div class='contain-the-rodcols'>
+        <div class='rodcol' id='rodcol1'> 
             <p id='rod-1' class='rods'></p>
             <p class='stick' id='stick1'></p>
-
             <p data-id='3' id="c" class="disk"></p>
             <p data-id='2' id="b" class="disk"></p>
-            <p data-id='1' id="a" class="disk"></p>
-            
+            <p data-id='1' id="a" class="disk"></p>      
         </div>
 
-        <div class='rodcol' id='rodcol2'>
-            
+        <div class='rodcol' id='rodcol2'>  
             <p id='rod-2' class='rods'></p> 
             <p class='stick' id='stick2'></p>
-
         </div> 
+        
         <div class='rodcol' id='rodcol3'>
-
             <p id='rod-3' class='rods'></p>
             <p class='stick' id='stick3'></p>
-
         </div>
-
-    </div>
+    </div><!--/contain-the-rodcols-->
 
     <div class="contain-reset">
         <button class='reset' id='reset-button'>Reset</button>

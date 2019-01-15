@@ -46,8 +46,7 @@ resetButton.onclick = function() {
     clearTimeout(t);
 }
 
-
-// add listener clicks to the disk objects
+// add listener clicks to the disk/rod objects
 function enableDiskClick() {
     diskSm1.addEventListener('click', diskClick)
     diskMd2.addEventListener('click', diskClick)
@@ -81,9 +80,7 @@ function checkForWin() {
     }
 }
 
-
-
-// will put the wasStackedOn parent ID here
+// will put the wasStackedOn parent ID here to make it global
 let rodEval = []
 
 function diskClick() {
@@ -105,24 +102,14 @@ function diskClick() {
         checkIfSmallest(rod3)
     }
 
-    // function checkIfSmallest(rodNum){
-    //     // if the current disk is larger than the disk already stored in the corresponding rod array
-    //     if (diskId > rodNum[1]) {
-    //         document.querySelector("#message").innerHTML = "Illegal move, please try again"
-    //     } else {
-    //         restOfFunction()
-    //     }  
-    // }
-
     function checkIfSmallest(rodNum){
-        // if the disk is larger than the top disk
+        // if the clicked disk is larger than the top disk
         if (diskId > rodNum[rodNum.length-1]) {
             document.querySelector("#message").innerHTML = "Illegal move, please try again"
         } else {
             restOfFunction()
         }  
     }
-
 
     function restOfFunction() {
         // add the current diskId to disksInPlay array
@@ -136,7 +123,7 @@ function diskClick() {
 }
 
 function rodClick() {
-    // store the clicked sticks's id 
+    // store the clicked rod's id 
     let rodId = event.target.getAttribute("id")
     // find the array that corresponds with the clicked rod
     if(rodId == 'stick1') {
@@ -217,8 +204,7 @@ function rodClick() {
     }
 }
 
-// code for timer
-
+// variables needed for timer
 let timerObj = document.getElementById('timer'),
     start = document.getElementById('start'),
     stop = document.getElementById('stop'),
@@ -226,6 +212,7 @@ let timerObj = document.getElementById('timer'),
     seconds = 0, minutes = 0, hours = 0,
     t;
 
+// fx to run each second
 function add() {
     seconds++;
     if (seconds >= 60) {
@@ -236,24 +223,27 @@ function add() {
             hours++;
         }
     }
-    
+
+    // setup running timer display
     timerObj.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 
     timer();
 }
+
+// runs the add fx every second
 function timer() {
     t = setTimeout(add, 1000);
 }
 
-/* Start button */
+// runs the timer when start btn clicked
 start.onclick = timer
 
-/* Stop button */
+// stops the timer when stop btn clicked
 stop.onclick = function() {
     clearTimeout(t);
 }
 
-/* Clear button */
+// clears the timer when clear btn clicked
 clear.onclick = function() {
     timerObj.textContent = "00:00:00";
     seconds = 0; minutes = 0; hours = 0;
